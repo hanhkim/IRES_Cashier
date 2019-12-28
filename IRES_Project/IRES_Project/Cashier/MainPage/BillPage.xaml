@@ -1,0 +1,230 @@
+﻿<UserControl x:Class="IRES_Project.Cashier.MainPage.BillPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IRES_Project.Cashier.MainPage"
+             xmlns:uc="clr-namespace:CustomControls.Cashier;assembly=CustomControls"
+             xmlns:menubar="clr-namespace:IRES_Project.ResourceXAML"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             FontSize="16"
+             >
+  <StackPanel>
+    <StackPanel.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF97BEBD" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+    </StackPanel.Background>
+    <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
+    <menubar:BreadCrumbPath></menubar:BreadCrumbPath>
+    
+    <!-- Content BillPage -->
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"></ColumnDefinition>
+        <ColumnDefinition Width="1*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <!-- Left Column -->
+      <Border  Grid.Column="0" BorderBrush="Black" BorderThickness="1" Padding="10">
+      <Grid>
+        
+        <Grid.RowDefinitions>
+          <RowDefinition Height=".4*"></RowDefinition>
+          <RowDefinition Height=".6*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+          <Border Width="400" BorderBrush="Black" BorderThickness="2">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height=".25*"></RowDefinition>
+                <RowDefinition Height=".75*"></RowDefinition>
+              </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#1630b3" Height="40" Margin="0,0,0.333,0" VerticalAlignment="Top">
+                <DockPanel>
+                  <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                      <materialDesign:PackIcon VerticalAlignment="Center" FontStretch="Expanded" Height="30" Width="30" Foreground="White" Kind="ChevronLeft" />
+                    </StackPanel>
+                  <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Orientation="Horizontal">
+                      <materialDesign:PackIcon Kind="AccountOutline" Height="25" Width="25" Foreground="White" Margin="5 2 0 0" FontWeight="Bold"/>
+                      <Label VerticalContentAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="White">Thẻ Thành Viên:</Label>
+                  </StackPanel>
+                </DockPanel>
+              </Grid>
+              <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                  <RowDefinition />
+                  <RowDefinition />
+                  <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="auto"/>
+                  <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                  <Label>Mã Thành Viên:</Label>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1">
+                  <TextBox Margin="3 3 3 3" Padding="2 0" BorderBrush="Black" BorderThickness="1" Text="{Binding CustomerInfo.Code}"></TextBox>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                  <Label>Tên Thành Viên:</Label>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                  <TextBox Margin="3 3 3 3" Padding="2 0" BorderBrush="Black" BorderThickness="1" Text="{Binding CustomerInfo.Name}"></TextBox>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0">
+                  <Label>Loại Thẻ:</Label>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1">
+                  <Label Content="{Binding CustomerInfo.Level}"></Label>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Border>
+        </Grid>
+       
+        <Grid Grid.Row="1">
+          <Border BorderBrush="Black" BorderThickness="2" Height="600" Margin="0 10 0 0 ">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="1*" />
+              </Grid.RowDefinitions>
+              <Grid>
+                  <DockPanel Background="#1630b3">
+                    <materialDesign:PackIcon Kind="Gift" Height="20" Width="20" Foreground="White" Margin="5 0 0 2" VerticalAlignment="Center"/>
+                    <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="White">
+                      Chương trình khuyến mãi</Label>
+                  </DockPanel>
+                </Grid>
+            </Grid>
+          </Border>
+        </Grid>
+      </Grid>
+      </Border>
+      <!-- Right Column -->
+      <Grid Grid.Column="1">
+        <Border BorderBrush="Black" BorderThickness="1" Padding="10">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height=".7*"></RowDefinition>
+              <RowDefinition Height=".2*"></RowDefinition>
+              <RowDefinition Height=".1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="40"/>
+                  <RowDefinition Height="auto"/>
+                  <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                  <DockPanel Background="#1630b3">
+                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="BookOpen" Height="20" Width="20" Foreground="White" Margin="5 0 5 0" />
+                    <Label VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Foreground="White" x:Name="txtTableCode"></Label>
+                  </DockPanel>
+                </Grid>
+                
+                <Grid Grid.Row="1">
+                  <Grid Grid.Row="1">
+                    <ListView FontSize="16" Margin="10" Name="lvUsers" ItemsSource="{Binding ListOrderDetail}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                      <ListView.View>
+                        <GridView>
+                          <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                              <Setter Property="Background" Value="Gray" />
+                              <Setter Property="Foreground" Value="Black" />
+                              <Setter Property="FontWeight" Value="Bold" />
+                              <Setter Property="Height" Value="40" />
+                              <Setter Property="HorizontalContentAlignment" Value="Left" />
+                              <Setter Property="Padding" Value="15 0 0 0" />
+                            </Style>
+                          </GridView.ColumnHeaderContainerStyle>
+                          <GridViewColumn Header="Tên" Width="270" DisplayMemberBinding="{Binding DishName}" >
+                          </GridViewColumn>
+                          <GridViewColumn Header="SL" Width="270" DisplayMemberBinding="{Binding DishQuantity}" />
+                          <GridViewColumn Header="Đơn Giá" Width="270" DisplayMemberBinding="{Binding DishCost}" />
+                          <GridViewColumn Header="Thành Tiền" Width="270" DisplayMemberBinding="{Binding DishTotalCost}" />
+                        </GridView>
+                      </ListView.View>
+                    </ListView>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="2">
+                  <DockPanel HorizontalAlignment="Right"  Margin="0 0 10 0">
+                    <Label FontWeight="Bold">Tổng cộng</Label>
+                    <Label FontWeight="Bold" Content="{Binding OrderInfo.OrderTotalPrice}"></Label>
+                  </DockPanel>
+
+                </Grid>
+              </Grid>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1"  Margin="0 1 0 0" Padding="10">
+              <Grid >
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="30"></RowDefinition>
+                  <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                  <DockPanel>
+                    <Label FontWeight="Bold" Foreground="Red">Mã giao dịch:</Label>
+                    <Label FontWeight="Bold" Content="{Binding OrderInfo.Code}"></Label>
+                  </DockPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                  </Grid.RowDefinitions>
+                  <Grid Grid.Row="0" Grid.Column="0">
+                    <Label>Tổng thanh toán:</Label>
+                  </Grid>
+                  <Grid Grid.Row="0" Grid.Column="1">
+                    <Label Content="{Binding OrderInfo.OrderTotalPrice}"></Label>
+                  </Grid>
+                  <Grid Grid.Row="1" Grid.Column="0">
+                    <Label>Thuế VAT 10%:</Label>
+                  </Grid>
+                  <Grid Grid.Row="1" Grid.Column="1">
+                    <Label Content="{Binding MoneyDetail.MoneyVAT}"></Label>
+                  </Grid>
+                  <Grid Grid.Row="2" Grid.Column="0">
+                    <Label>Tiền khuyến mãi:</Label>
+                  </Grid>
+                  <Grid Grid.Row="2" Grid.Column="1">
+                    <Label>0</Label>
+                  </Grid>
+                  <Grid Height="100" Grid.Row="3" Grid.Column="0">
+                    <Label>Tổng tiền phải trả:</Label>
+                  </Grid>
+                  <Grid Grid.Row="3" Grid.Column="1">
+                    <Label FontWeight="Bold" Content="{Binding MoneyDetail.TotalPay}"></Label>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Border>
+            <Border Grid.Row="2" BorderBrush="Black" BorderThickness="2" Padding="10 10 10 0" Margin="0 1 0 0" VerticalAlignment="Bottom" Height="100">
+              <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Quay Lại" Width="250" Height="50" Margin="10" Background="Brown" Click="Button_Click_Back"/>
+                <Button Content="In Hóa Đơn" Width="250" Height="50" Margin="10" Background="Gray"/>
+                <Button Content="Thanh Toán" CommandTarget="{Binding TotalPay}" Width="250" Height="50" Margin="10" Background="Green" Click="Button_Click"/>
+              </StackPanel>
+            </Border>
+          </Grid>
+        </Border>
+      </Grid>
+    </Grid>
+
+  </StackPanel>
+  
+</UserControl>
