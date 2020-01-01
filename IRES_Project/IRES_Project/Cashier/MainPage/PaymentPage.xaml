@@ -169,7 +169,7 @@
               <Label FontSize="18" Content="{Binding MoneyModel.MoneyCustomerGive}"></Label>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="0">
-              <CheckBox FontSize="18" VerticalAlignment="Center" Background="Beige" Checked="CheckBox_Checked_Customer_Tip"
+              <CheckBox FontSize="18" VerticalAlignment="Center" Background="Beige" Unchecked="CheckBox_Unchecked_Customer_Tip" Checked="CheckBox_Checked_Customer_Tip"
                   IsChecked="{Binding MoneyModel.IsSelectedTip}" >Tiền tiếp khách hàng:</CheckBox>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">

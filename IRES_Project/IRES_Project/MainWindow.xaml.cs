@@ -7,6 +7,7 @@ using IRES_Project.Cashier.MainPage;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using ViewModel.Cashier.Common;
+using IRES_Project.Views;
 
 namespace IRES_Project
 {
@@ -22,8 +23,8 @@ namespace IRES_Project
             //ReceiveNotifyRabbitMQ rabbitMQConnection = new ReceiveNotifyRabbitMQ();
 
             //Login to enter main page
-            //Login loginWindow = new Login();
-            //loginWindow.ShowDialog();
+          //  Login loginWindow = new Login();
+          //  loginWindow.ShowDialog();
 
             // listening notify
             ReceiveNotifyRabbitMQ();

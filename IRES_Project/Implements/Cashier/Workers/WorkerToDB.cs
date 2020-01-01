@@ -20,7 +20,7 @@ namespace Implements.Workers
 
             SQLExcute sqlExecute= new SQLExcute();
 
-            DataTable dt = sqlExecute.GetExcuteQuery(query); // table of all things get
+            DataTable dt = sqlExecute.GetExcuteQuery(query);
 
             return dt;
         }
@@ -30,7 +30,7 @@ namespace Implements.Workers
 
             SQLExcute sqlExecute = new SQLExcute();
 
-            return sqlExecute.UpdateExcuteQuery(query); // table of all things get
+            return sqlExecute.UpdateExcuteQuery(query);
         }
 
     }

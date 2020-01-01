@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel.GlobalViewModels;
-using Model.DB;
 using Model.Cashier;
 using System.Windows;
 using Implements.Cashier;

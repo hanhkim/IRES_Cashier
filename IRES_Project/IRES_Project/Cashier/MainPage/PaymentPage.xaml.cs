@@ -74,6 +74,12 @@ namespace IRES_Project.Cashier.MainPage
             paymentVM.MoneyModel.MoneyReturnCustomer = paymentVM.MoneyModel.setMoneyReturnCustomer();
         }
 
+        private void CheckBox_Unchecked_Customer_Tip(object sender, RoutedEventArgs e)
+        {
+            paymentVM.MoneyModel.MoneyCustomerTip = 0;
+            paymentVM.MoneyModel.MoneyReturnCustomer = paymentVM.MoneyModel.setMoneyReturnCustomer();
+        }
+
         private void Button_Payement_Click(object sender, RoutedEventArgs e)
         {
             if (paymentVM.MoneyModel.MoneyCustomer <= 0 || paymentVM.MoneyModel.MoneyReturnCustomer < 0)

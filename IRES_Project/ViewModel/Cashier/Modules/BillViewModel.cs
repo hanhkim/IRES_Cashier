@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.Cashier;
 using ViewModel.GlobalViewModels;
-using Model.DB;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Data;

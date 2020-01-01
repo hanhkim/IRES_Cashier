@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ViewModel.Cashier.Modules;
 
-namespace IRES_Project.Views.Login
+namespace IRES_Project.Views
 {
     /// <summary>
     /// Interaction logic for Login.xaml
@@ -36,9 +36,11 @@ namespace IRES_Project.Views.Login
                 loginViewModel.PassWord = txtPassword.Password;
                 Boolean checkLogin = loginViewModel.checkUser();
 
-                if (checkLogin == true)
-                {
+                 if (checkLogin == true)
+                 {
+                    MainWindow mainWindow = new MainWindow();
                     this.Close();
+                    mainWindow.ShowDialog();
                 }
                 else
                 {
@@ -54,6 +56,19 @@ namespace IRES_Project.Views.Login
 
         private void BtnCancelLogin_Click(object sender, RoutedEventArgs e)
         {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void PackIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //MessageBox.Show("123");
+
+            //MouseDown = "PackIcon_MouseDown"
+        }
+
+        private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("123");
             System.Windows.Application.Current.Shutdown();
         }
     }

@@ -8,6 +8,10 @@ namespace Model.Models
 {
     public class UserModel
     {
+        public UserModel()
+        {
+
+        }
         public UserModel(string username, string password)
         {
             this.username = username;
@@ -16,7 +20,8 @@ namespace Model.Models
 
         private string username;
         private string password;
-
+        private string role;
+        public string Role { get => role; set => role = value; }
         public string Username { get => username; set => username = value; }
         public string Password { get => password; set => password = value; }
         public Boolean isValidUsername()

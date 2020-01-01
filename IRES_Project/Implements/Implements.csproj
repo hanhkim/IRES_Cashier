@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cashier\Modules\BillOrderImplement.cs" />
+    <Compile Include="Cashier\Modules\LoginImplementation.cs" />
     <Compile Include="Cashier\Modules\PaymentImplement.cs" />
     <Compile Include="Cashier\Modules\TableImplement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

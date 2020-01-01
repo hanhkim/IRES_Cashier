@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 using Model.Models;
 using System.Windows;
 using System.Collections.ObjectModel;
-using Model.DB;
 using ViewModel.GlobalViewModels;
+using Implements.Cashier.Modules;
 
 namespace ViewModel.Cashier.Modules
 {
     public class LoginViewModel: BaseViewModel
     {
-        Connection DataContext = null;
         public LoginViewModel()
         {
-            DataContext = Connection.Instance;
+            
         }
         private string _UserName;
 
@@ -34,17 +33,17 @@ namespace ViewModel.Cashier.Modules
             set { _PassWord = value; OnPropertyChanged(); }
         }
 
-        //public ObservableCollection<User> User
-        //{
-        //    get;
-        //    set;
-        //}
-
         public Boolean checkUser()
         {
-            string query = $"SELECT 1 FROM ires.employee WHERE user_name='{this.UserName}' and password='{this.PassWord}'";
+            LoginImplementation loginImp = new LoginImplementation();
+            UserModel user = loginImp.getUser(new UserModel(UserName, PassWord));
 
-            return DataContext.runCommand(query);
+            if (user.Role != null && user.Role == "3")
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

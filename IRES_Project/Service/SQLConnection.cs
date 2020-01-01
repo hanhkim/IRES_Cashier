@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using IRES_Globals.GlobalClass;
 using Npgsql;
 
@@ -72,22 +73,7 @@ namespace Service
 
         private void ShowError(NpgsqlException ex)
         {
-            // MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK);
-        }
-
-        public Boolean RunCommand(string query)
-        {
-            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
-
-            // Execute the query and obtain the value of the first column of the first row
-            if (cmd.ExecuteScalar() != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            MessageBox.Show(ex.Message, "Error");
         }
 
     }
