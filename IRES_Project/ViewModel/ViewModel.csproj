@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cashier\Common\BreadCrumbViewModel.cs" />
+    <Compile Include="Cashier\Common\PromotionViewModel.cs" />
     <Compile Include="GlobalViewModels\BaseViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Cashier\Modules\BillViewModel.cs" />

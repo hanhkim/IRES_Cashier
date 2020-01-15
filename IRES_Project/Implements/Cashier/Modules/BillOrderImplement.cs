@@ -18,7 +18,7 @@ namespace Implements.Cashier.Modules
         public int getOrderId(int idTable)
         {
             string query = $"SELECT bt.order_id FROM ires.booking_table bt" +
-                $" WHERE bt.table_id={idTable} AND bt.status = 'Chưa thanh toán'";
+                $" WHERE bt.table_id={idTable} AND bt.status = 'CHƯA THANH TOÁN'";
 
             WorkerToDB billToDB = new WorkerToDB();
             DataTable dt = billToDB.getRecordsCommand(query);

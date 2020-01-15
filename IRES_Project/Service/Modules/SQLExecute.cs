@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Npgsql;
 
 namespace Service.Modules
@@ -49,6 +50,30 @@ namespace Service.Modules
                 return false;
             }
 
+        }
+
+        public bool InsertExecuteQuery(string query) 
+        { 
+            try
+            {
+                NpgsqlCommand cmd = new NpgsqlCommand(query, SQLConnection.Instance.Connection);
+
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch(NpgsqlException e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+        
         }
 
     }

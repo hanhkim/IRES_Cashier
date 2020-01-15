@@ -62,7 +62,7 @@ namespace IRES_Project.Cashier.MainPage
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             float totalPay = (DataContext as BillViewModel).MoneyDetail.TotalPay;
-            Switcher.Switch(new PaymentPage(totalPay, billVM.OrderInfo.Id, tableSelected));
+            Switcher.Switch(new PaymentPage(totalPay, billVM.OrderInfo.Id, tableSelected, billVM.CustomerInfo.ID));
             BreadCrumbViewModel.Instance.BreadCrumb.Add("Payment");
         }
 

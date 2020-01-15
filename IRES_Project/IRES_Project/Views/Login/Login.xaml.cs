@@ -21,7 +21,6 @@ namespace IRES_Project.Views
     public partial class Login : Window
     {
         LoginViewModel loginViewModel = null;
-
         public Login()
         {
             InitializeComponent();

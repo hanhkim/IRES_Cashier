@@ -82,7 +82,7 @@ namespace ViewModel.Cashier.Modules
         {
             BillOrderImplement orderInfo = new BillOrderImplement();
             return orderInfo.getDishesInfo(order_id);
-        }
+        }   
 
     }
 }

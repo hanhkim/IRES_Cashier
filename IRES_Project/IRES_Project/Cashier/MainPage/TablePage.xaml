@@ -8,7 +8,7 @@
              xmlns:menubar="clr-namespace:IRES_Project.ResourceXAML"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignWidth="800">
   <UserControl.Resources>
     <Style TargetType="ListBoxItem">
       <Setter Property="Template">
@@ -91,6 +91,8 @@
         <GradientStop Color="White" Offset="1" />
       </LinearGradientBrush>
     </Grid.Background>
+    <Grid.ColumnDefinitions>
+    </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="auto"/>
       <RowDefinition Height="*"/>
@@ -100,53 +102,125 @@
       <menubar:BreadCrumbPath></menubar:BreadCrumbPath>
     </StackPanel>
     <Grid Grid.Row="1">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="50"></RowDefinition>
-        <RowDefinition Height="1*"></RowDefinition>
-      </Grid.RowDefinitions>
-      <Grid Grid.Row="0">
-        <Button Click="Button_Click_1" Margin="0 0 20 0" HorizontalAlignment="Right" Width="100" Content="Refesh"></Button>
-      </Grid>
-      <ListBox Grid.Row="1" SelectedItem="{Binding SelectedFloor,UpdateSourceTrigger=PropertyChanged}" 
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="300"/>
+        <ColumnDefinition Width="1*"/>
+      </Grid.ColumnDefinitions>
+      <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
+        <Grid>
+          <Border BorderBrush="Black" BorderThickness="2" Margin="5">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="1*" />
+              </Grid.RowDefinitions>
+              <Grid Grid.Row="0" Height="40">
+                <DockPanel Background="#1630b3">
+                <materialDesign:PackIcon Kind="Gift" Height="20" Width="20" Foreground="White" Margin="5 0 0 2" VerticalAlignment="Center"/>
+                <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="White">
+                Chương trình khuyến mãi</Label>
+                </DockPanel>
+              </Grid>
+              <Grid Grid.Row="1">
+                <ListBox Margin="5,5,5,5" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
+                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox Name="MangoShakeCheckBox">
+                        <StackPanel Orientation="Horizontal">
+                          <TextBlock Text="Mango Shake"></TextBlock>
+                        </StackPanel>
+                      </CheckBox>
+                    </ListBoxItem>
+                  </Border>
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
+                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox Name="d">
+                        <StackPanel Orientation="Horizontal">
+                          <TextBlock Text="Mango Shake"></TextBlock>
+                        </StackPanel>
+                      </CheckBox>
+                    </ListBoxItem>
+                  </Border>
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
+                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox Name="f">
+                        <StackPanel Orientation="Horizontal">
+                          <TextBlock Text="Mango Shake"></TextBlock>
+                        </StackPanel>
+                      </CheckBox>
+                    </ListBoxItem>
+                  </Border>
+                </ListBox>
+              </Grid>
+            </Grid>
+          </Border>
+        </Grid>
+      </Border>
+      
+      <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+        <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="50"></RowDefinition>
+          <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <DockPanel Background="#1630b3">
+              <materialDesign:PackIcon Kind="ViewList" Height="25" Width="25" Foreground="White" Margin="10 0 5 0" VerticalAlignment="Center"/>
+              <Label VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Foreground="White">
+                Danh sách bàn</Label>
+            </DockPanel>
+            <Button Margin="0 0 20 0" HorizontalAlignment="Right"  Width="100" Background="Gray"
+                Click="Button_Click_Refresh"
+                Content="{materialDesign:PackIcon Reload}"
+                ToolTip="Icon" />
+            <!--<Button Click="Button_Click_1" Margin="0 0 20 0" HorizontalAlignment="Right" Width="100" Content="Refesh"></Button>-->
+        </Grid>
+        <ListBox Grid.Row="1" SelectedItem="{Binding SelectedFloor,UpdateSourceTrigger=PropertyChanged}" 
         ItemsSource="{Binding ListFloors}" HorizontalAlignment="Center" Name="lsbFloor">
-        <ListBox.ItemsPanel>
-          <ItemsPanelTemplate>
-            <WrapPanel IsItemsHost="True" />
-          </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-        <ListBox.ItemTemplate>
+          <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel IsItemsHost="True" />
+            </ItemsPanelTemplate>
+          </ListBox.ItemsPanel>
+          <ListBox.ItemTemplate>
 
-          <!-- Group Floor Show Table  -->
-          <DataTemplate >
-            <GroupBox Margin="20" Header="{Binding Name}" BorderBrush="Black" BorderThickness="1" Width="600" Height="350">
-              <ListBox SelectedItem="{Binding SelectedTable, UpdateSourceTrigger=PropertyChanged}" Name="lbxTable"
+            <!-- Group Floor Show Table  -->
+            <DataTemplate >
+              <GroupBox Margin="20" Header="{Binding Name}" BorderBrush="Black" BorderThickness="1" Width="500" Height="350">
+                <ListBox SelectedItem="{Binding SelectedTable, UpdateSourceTrigger=PropertyChanged}" Name="lbxTable"
                 HorizontalAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="lbxTable_SelectionChanged"
                  ItemsSource="{Binding ListTables}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <ListBox.ItemsPanel>
-                  <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" />
-                  </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                  <DataTemplate>
-                    <StackPanel>
-                      <Button Margin="10 10 10 0" Height="70" Style="{StaticResource btnTable}" Tag="{Binding Id}">
-                        <Image >
-                          <Image.Source>
-                            <BitmapImage UriSource="../../Resources/Images/table_persons.png" />
-                          </Image.Source>
-                        </Image>
-                      </Button>
-                      <Label HorizontalAlignment="Center" Content="{Binding Code}" ></Label>
-                    </StackPanel>
-                  </DataTemplate>
-                </ListBox.ItemTemplate>
-              </ListBox>
-            </GroupBox>
-          </DataTemplate>
+                  <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                  </ListBox.ItemsPanel>
+                  <ListBox.ItemTemplate>
+                    <DataTemplate>
+                      <StackPanel>
+                        <Button Margin="10 10 10 0" Height="70" Style="{StaticResource btnTable}" Tag="{Binding Id}">
+                          <Image>
+                            <Image.Source>
+                              <BitmapImage UriSource="../../Resources/Images/table_persons.png" />
+                            </Image.Source>
+                          </Image>
+                        </Button>
+                        <Label HorizontalAlignment="Center" Content="{Binding Code}" ></Label>
+                      </StackPanel>
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+              </GroupBox>
+            </DataTemplate>
 
-        </ListBox.ItemTemplate>
-      </ListBox>
+          </ListBox.ItemTemplate>
+        </ListBox>
+
+        </Grid>
+      </Border>
+     
+     
+      
      
     </Grid>
   </Grid>

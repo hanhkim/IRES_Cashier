@@ -33,5 +33,12 @@ namespace Implements.Workers
             return sqlExecute.UpdateExcuteQuery(query);
         }
 
+        public bool insertCommand(string query)
+        {
+            SQLExcute sqlExecute = new SQLExcute();
+
+            return sqlExecute.InsertExecuteQuery(query);
+        }
+
     }
 }

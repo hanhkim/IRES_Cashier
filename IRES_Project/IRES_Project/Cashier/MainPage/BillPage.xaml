@@ -93,12 +93,43 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="1*" />
               </Grid.RowDefinitions>
-              <Grid>
+              <Grid Grid.Row="0">
                   <DockPanel Background="#1630b3">
                     <materialDesign:PackIcon Kind="Gift" Height="20" Width="20" Foreground="White" Margin="5 0 0 2" VerticalAlignment="Center"/>
                     <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="White">
                       Chương trình khuyến mãi</Label>
                   </DockPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                  <ListBox Margin="5,5,5,5" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="350" >
+                      <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                        <CheckBox Name="MangoShakeCheckBox">
+                          <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Mango Shake"></TextBlock>
+                          </StackPanel>
+                        </CheckBox>
+                      </ListBoxItem>
+                    </Border>
+                    <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="350" >
+                      <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                        <CheckBox Name="d">
+                          <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Mango Shake"></TextBlock>
+                          </StackPanel>
+                        </CheckBox>
+                      </ListBoxItem>
+                    </Border>
+                    <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="350" >
+                      <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                        <CheckBox Name="f">
+                          <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Mango Shake"></TextBlock>
+                          </StackPanel>
+                        </CheckBox>
+                      </ListBoxItem>
+                    </Border>
+                  </ListBox>
                 </Grid>
             </Grid>
           </Border>

@@ -25,16 +25,17 @@ namespace IRES_Project.Cashier.MainPage
         PaymentViewModel paymentVM;
         TableModel tableSelected = new TableModel();
 
-        int orderId, tableId;
+        int orderId, tableId, customerId;
 
         public PaymentPage()
         {
             InitializeComponent();
         }
 
-        public PaymentPage(float totalPay, int orderId, TableModel tableSelected)                             
+        public PaymentPage(float totalPay, int orderId, TableModel tableSelected, int customer_id)                             
         {
             InitializeComponent();
+            this.customerId = customer_id;
             LoadData(totalPay, orderId, tableSelected);
         }
 
@@ -88,7 +89,7 @@ namespace IRES_Project.Cashier.MainPage
                 return;
             }
 
-            if (paymentVM.FinishPayment(orderId, tableId))
+            if (paymentVM.FinishPayment(orderId, tableId, customerId))
             {
                 MessageBox.Show("Thanh toan thành công");
                 IRES_Globals.Cashier.MemoryAction.Instance = null;

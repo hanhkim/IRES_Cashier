@@ -42,7 +42,6 @@ namespace IRES_Project
         {
             try
             {
-                MessageBox.Show("rabbitmq listening");
                 ConnectionFactory factory = new ConnectionFactory();
                 factory.UserName = "xarzdlrm";
                 factory.Password = "Be9K-7C4C1sO9hiJTJwZSHITqm7NX6LS";

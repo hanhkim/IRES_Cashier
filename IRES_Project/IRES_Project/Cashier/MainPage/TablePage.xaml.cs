@@ -47,8 +47,9 @@ namespace IRES_Project.Cashier.MainPage
             BreadCrumbViewModel.Instance.BreadCrumb.Add("Bill");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_Refresh(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("djaf");
             LoadData();
         }
     }
