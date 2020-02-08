@@ -29,7 +29,7 @@ namespace ViewModel.Cashier.Common
         public BreadCrumbViewModel()
         {
             BreadCrumb = new List<string>();
-            BreadCrumb.Add("Table");
+            BreadCrumb.Add("Bàn");
         }
 
         private List<string> _BreadCrumb;
@@ -50,23 +50,23 @@ namespace ViewModel.Cashier.Common
         {
             switch(pos)
             {
-                case "Table":
+                case "Bàn":
                     if (Instance.BreadCrumb != null)
                     {
                         Instance.BreadCrumb.Clear();
-                        Instance.BreadCrumb.Add("Table");
+                        Instance.BreadCrumb.Add("Bàn");
                     }
                     break;
-                case "Bill":
+                case "Hóa đơn":
                     Instance.BreadCrumb.Clear();
-                    Instance.BreadCrumb.Add("Table");
-                    Instance.BreadCrumb.Add("Bill");
+                    Instance.BreadCrumb.Add("Bàn");
+                    Instance.BreadCrumb.Add("Hóa đơn");
                     break;
-                case "Payment":
+                case "Thanh toán":
                     Instance.BreadCrumb.Clear();
-                    Instance.BreadCrumb.Add("Table");
-                    Instance.BreadCrumb.Add("Bill");
-                    Instance.BreadCrumb.Add("Payment");
+                    Instance.BreadCrumb.Add("Bàn");
+                    Instance.BreadCrumb.Add("Hóa đơn");
+                    Instance.BreadCrumb.Add("Thanh toán");
                     break;
                 default: break;
             }

@@ -10,16 +10,16 @@
              mc:Ignorable="d"
              FontSize="16"
              >
-  <StackPanel>
-    <StackPanel.Background>
+  <StackPanel Background="#CCCCCC">
+    <!--<StackPanel.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF97BEBD" Offset="0" />
             <GradientStop Color="White" Offset="1" />
         </LinearGradientBrush>
-    </StackPanel.Background>
+    </StackPanel.Background>-->
     <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
     <menubar:BreadCrumbPath></menubar:BreadCrumbPath>
-    
+
     <!-- Content BillPage -->
     <Grid>
       <Grid.ColumnDefinitions>
@@ -28,80 +28,84 @@
       </Grid.ColumnDefinitions>
       <!-- Left Column -->
       <Border  Grid.Column="0" BorderBrush="Black" BorderThickness="1" Padding="10">
-      <Grid>
-        
-        <Grid.RowDefinitions>
-          <RowDefinition Height=".4*"></RowDefinition>
-          <RowDefinition Height=".6*"></RowDefinition>
-        </Grid.RowDefinitions>
+        <Grid>
 
-        <Grid Grid.Row="0">
-          <Border Width="400" BorderBrush="Black" BorderThickness="2">
-            <Grid>
-              <Grid.RowDefinitions>
-                <RowDefinition Height=".25*"></RowDefinition>
-                <RowDefinition Height=".75*"></RowDefinition>
-              </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="#1630b3" Height="40" Margin="0,0,0.333,0" VerticalAlignment="Top">
-                <DockPanel>
-                  <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+          <Grid.RowDefinitions>
+            <RowDefinition Height=".4*"></RowDefinition>
+            <RowDefinition Height=".6*"></RowDefinition>
+          </Grid.RowDefinitions>
+
+          <Grid Grid.Row="0">
+            <Border Width="400" BorderBrush="Black" BorderThickness="2">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height=".25*"></RowDefinition>
+                  <RowDefinition Height=".75*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Background="#1630b3" Height="50" Margin="0,0,0.333,0" BorderThickness="0 0 0 2" BorderBrush="Black" VerticalAlignment="Top">
+                  <DockPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                       <materialDesign:PackIcon VerticalAlignment="Center" FontStretch="Expanded" Height="30" Width="30" Foreground="White" Kind="ChevronLeft" />
                     </StackPanel>
-                  <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Orientation="Horizontal">
+                    <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Orientation="Horizontal">
                       <materialDesign:PackIcon Kind="AccountOutline" Height="25" Width="25" Foreground="White" Margin="5 2 0 0" FontWeight="Bold"/>
                       <Label VerticalContentAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="White">Thẻ Thành Viên:</Label>
-                  </StackPanel>
-                </DockPanel>
+                    </StackPanel>
+                  </DockPanel>
+                </Border>
+                <Grid Grid.Row="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="1*"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid Grid.Row="0" Grid.Column="0">
+                    <Label>Mã Thành Viên:</Label>
+                  </Grid>
+                  <Grid Grid.Row="0" Grid.Column="1">
+                    <TextBox Margin="3 3 3 3" Padding="2 0" BorderBrush="Black" BorderThickness="1" Text="{Binding CustomerInfo.Code}"></TextBox>
+                  </Grid>
+                  <Grid Grid.Row="1" Grid.Column="0">
+                    <Label>Tên Thành Viên:</Label>
+                  </Grid>
+                  <Grid Grid.Row="1" Grid.Column="1">
+                    <TextBox Margin="3 3 3 3" Padding="2 0" BorderBrush="Black" BorderThickness="1" Text="{Binding CustomerInfo.Name}"></TextBox>
+                  </Grid>
+                  <Grid Grid.Row="2" Grid.Column="0">
+                    <Label>Loại Thẻ:</Label>
+                  </Grid>
+                  <Grid Grid.Row="2" Grid.Column="1">
+                    <Label Content="{Binding CustomerInfo.Level}"></Label>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid Grid.Row="1">
+            </Border>
+          </Grid>
+
+          <Grid Grid.Row="1">
+            <Border BorderBrush="Black" BorderThickness="2" Height="600" Margin="0 10 0 0 ">
+              <Grid>
                 <Grid.RowDefinitions>
-                  <RowDefinition />
-                  <RowDefinition />
-                  <RowDefinition />
+                  <RowDefinition Height="50" />
+                  <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="auto"/>
-                  <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" Grid.Column="0">
-                  <Label>Mã Thành Viên:</Label>
-                </Grid>
-                <Grid Grid.Row="0" Grid.Column="1">
-                  <TextBox Margin="3 3 3 3" Padding="2 0" BorderBrush="Black" BorderThickness="1" Text="{Binding CustomerInfo.Code}"></TextBox>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="0">
-                  <Label>Tên Thành Viên:</Label>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="1">
-                  <TextBox Margin="3 3 3 3" Padding="2 0" BorderBrush="Black" BorderThickness="1" Text="{Binding CustomerInfo.Name}"></TextBox>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="0">
-                  <Label>Loại Thẻ:</Label>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="1">
-                  <Label Content="{Binding CustomerInfo.Level}"></Label>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Border>
-        </Grid>
-       
-        <Grid Grid.Row="1">
-          <Border BorderBrush="Black" BorderThickness="2" Height="600" Margin="0 10 0 0 ">
-            <Grid>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="1*" />
-              </Grid.RowDefinitions>
-              <Grid Grid.Row="0">
+                <Border Grid.Row="0" BorderThickness="0 0 0 2" BorderBrush="Black">
                   <DockPanel Background="#1630b3">
                     <materialDesign:PackIcon Kind="Gift" Height="20" Width="20" Foreground="White" Margin="5 0 0 2" VerticalAlignment="Center"/>
                     <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="White">
                       Chương trình khuyến mãi</Label>
                   </DockPanel>
-                </Grid>
+                </Border>
                 <Grid Grid.Row="1">
-                  <ListBox Margin="5,5,5,5" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="391*"/>
+                  </Grid.ColumnDefinitions>
+                  <ListBox Margin="7.2,5,12.8,0" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1">
                     <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="350" >
                       <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                         <CheckBox Name="MangoShakeCheckBox">
@@ -131,10 +135,10 @@
                     </Border>
                   </ListBox>
                 </Grid>
-            </Grid>
-          </Border>
+              </Grid>
+            </Border>
+          </Grid>
         </Grid>
-      </Grid>
       </Border>
       <!-- Right Column -->
       <Grid Grid.Column="1">
@@ -148,17 +152,17 @@
             <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
               <Grid>
                 <Grid.RowDefinitions>
-                  <RowDefinition Height="40"/>
+                  <RowDefinition Height="50"/>
                   <RowDefinition Height="auto"/>
                   <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Border BorderThickness="0 0 0 2" BorderBrush="Black" Grid.Row="0">
                   <DockPanel Background="#1630b3">
                     <materialDesign:PackIcon VerticalAlignment="Center" Kind="BookOpen" Height="20" Width="20" Foreground="White" Margin="5 0 5 0" />
                     <Label VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Foreground="White" x:Name="txtTableCode"></Label>
                   </DockPanel>
-                </Grid>
-                
+                </Border>
+
                 <Grid Grid.Row="1">
                   <Grid Grid.Row="1">
                     <ListView FontSize="16" Margin="10" Name="lvUsers" ItemsSource="{Binding ListOrderDetail}" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -257,5 +261,5 @@
     </Grid>
 
   </StackPanel>
-  
+
 </UserControl>

@@ -27,14 +27,15 @@ namespace Implements.Cashier.Modules
 
             for (int i = 0; i < dtFloor.Rows.Count; i++)
             {
-                var FloorName = dtFloor.Rows[i]["table_position"].ToString();
+                var FloorName = dtFloor.Rows[i]["table_position"].ToString();   
                 var checkFloor = result.FirstOrDefault(x => x.Name == FloorName);
 
                 var table = new TableModel()
                 {
                     Code = dtFloor.Rows[i]["table_code"].ToString(),
                     Id = Convert.ToInt32(dtFloor.Rows[i]["table_id"]),
-                    StatusShow = dtFloor.Rows[i]["table_status"].ToString() == "CÒN TRỐNG" ? false : true
+                    StatusShow = dtFloor.Rows[i]["table_status"].ToString() == "CÒN TRỐNG" ? false : true,
+                    TableName = "Bàn " + dtFloor.Rows[i]["table_number"].ToString()
                 };
 
                 if (checkFloor == null) // if floor not exist => create new floor

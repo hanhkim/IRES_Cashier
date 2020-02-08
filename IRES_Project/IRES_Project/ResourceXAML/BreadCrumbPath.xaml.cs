@@ -31,16 +31,16 @@ namespace IRES_Project.ResourceXAML
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string current = (e.Source as Button).Content.ToString();
+            string current = (e.Source as Button).DataContext.ToString();
             switch (current)
             {
-                case "Table":
+                case "Bàn":
                     Switcher.Switch(new TablePage());
                     break;
-                case "Bill":
+                case "Hóa đơn":
                     Switcher.Switch(new BillPage(IRES_Globals.Cashier.MemoryAction.Instance.CurrentSelectedTable));
                     break;
-                case "Payment":
+                case "Thanh toán":
                     Switcher.Switch(new PaymentPage());
                     break;
                 default: break;

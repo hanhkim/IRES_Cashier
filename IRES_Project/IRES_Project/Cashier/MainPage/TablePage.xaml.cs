@@ -35,8 +35,8 @@ namespace IRES_Project.Cashier.MainPage
         {
             tbVM = new TableViewModel(); // declare table list
             DataContext = tbVM;
-            MemoryAction.Instance.CurrentPage = "Table";
-            BreadCrumbViewModel.Instance.RemovePos("Table");
+            MemoryAction.Instance.CurrentPage = "Bàn";
+            BreadCrumbViewModel.Instance.RemovePos("Bàn");
         }
 
         private void lbxTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,13 +44,18 @@ namespace IRES_Project.Cashier.MainPage
             TableModel selectedTable = e.AddedItems[0] as TableModel;
             MemoryAction.Instance.CurrentSelectedTable = selectedTable;
             Switcher.Switch(new BillPage(selectedTable));
-            BreadCrumbViewModel.Instance.BreadCrumb.Add("Bill");
+            BreadCrumbViewModel.Instance.BreadCrumb.Add("Hóa đơn");
         }
 
         private void Button_Click_Refresh(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("djaf");
+            MessageBox.Show("Refreshing");
             LoadData();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

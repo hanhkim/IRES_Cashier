@@ -21,14 +21,16 @@ namespace Model.Cashier
         public float TotalPay { get => totalPay; set { totalPay = value; OnPropertyChanged(); } }
         public float MoneyCustomerGive { get => moneyCustomerGive; set { moneyCustomerGive = value; OnPropertyChanged(); } }
         public float MoneyReturnCustomer { get => moneyReturnCustomer; set { moneyReturnCustomer = value; OnPropertyChanged(); } }
-        
+        // set { moneyReturnCustomer = value; OnPropertyChanged(); }
         public float MoneyCustomerTip { get => moneyCustomerTip; set { moneyCustomerTip = value; OnPropertyChanged(); } }
 
         public bool IsSelectedTipAll { get => isSelectedTipAll; set { isSelectedTipAll = value;  OnPropertyChanged(); } }
-        public bool IsSelectedTip { get => isSelectedTip; set { isSelectedTip = value;  OnPropertyChanged(); } }
+        //public bool IsSelectedTip { get => isSelectedTip; }
+        public bool IsSelectedTip { get => isSelectedTip; set => isSelectedTip = value; }
 
         public float setMoneyReturnCustomer()
         {
+            isSelectedTip = true;
             moneyReturnCustomer = moneyCustomer - totalPay - moneyCustomerGive - MoneyCustomerTip;
             return moneyReturnCustomer;
         }

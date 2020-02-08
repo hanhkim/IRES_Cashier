@@ -31,5 +31,7 @@ namespace Model.Cashier
         public string Version { get; set; }
 
         public bool StatusShow { get; set; }
+
+        public string TableName { get; set; }
     }
 }

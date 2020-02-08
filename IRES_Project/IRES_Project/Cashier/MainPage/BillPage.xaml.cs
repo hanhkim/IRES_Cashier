@@ -30,7 +30,7 @@ namespace IRES_Project.Cashier.MainPage
         public BillPage()
         {
             InitializeComponent();
-            MemoryAction.Instance.CurrentPage = "Bill";
+            MemoryAction.Instance.CurrentPage = "Hóa đơn";
         }
 
         public BillPage(TableModel selectedTable)
@@ -47,7 +47,7 @@ namespace IRES_Project.Cashier.MainPage
                 txtTableCode.Content = tableSelected.Code;
                 DataContext = billVM;
             }
-            MemoryAction.Instance.CurrentPage = "Bill";
+            MemoryAction.Instance.CurrentPage = "Hóa đơn";
         }
 
         public BillPage(int i)
@@ -63,7 +63,7 @@ namespace IRES_Project.Cashier.MainPage
         {
             float totalPay = (DataContext as BillViewModel).MoneyDetail.TotalPay;
             Switcher.Switch(new PaymentPage(totalPay, billVM.OrderInfo.Id, tableSelected, billVM.CustomerInfo.ID));
-            BreadCrumbViewModel.Instance.BreadCrumb.Add("Payment");
+            BreadCrumbViewModel.Instance.BreadCrumb.Add("Thanh toán");
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)

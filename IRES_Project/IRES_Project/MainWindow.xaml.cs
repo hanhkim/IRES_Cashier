@@ -52,6 +52,7 @@ namespace IRES_Project
                 var channel = conn.CreateModel();
 
                 var consumer = new EventingBasicConsumer(channel);
+
                 consumer.Received += (model, ea) =>
                 {
                     var body = ea.Body;
@@ -59,6 +60,7 @@ namespace IRES_Project
 
                     if (message != null)
                     {
+                        MessageBox.Show("new notify");
                         if (BreadCrumbViewModel.Instance.BreadCrumb.Last() == "Table")
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate {
@@ -67,7 +69,7 @@ namespace IRES_Project
                         }
                     }
                 };
-                channel.BasicConsume(queue: "local.notification.order.trigger-handler.queue",
+                channel.BasicConsume(queue: "cashier_queue",
                                      autoAck: true,
                                      consumer: consumer);
 

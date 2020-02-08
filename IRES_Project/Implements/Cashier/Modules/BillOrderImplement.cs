@@ -43,10 +43,12 @@ namespace Implements.Cashier.Modules
             var orderInfo = new Order();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                var orderTotalPrice = (Convert.ToInt32(dt.Rows[i]["order_total_price"].ToString() != "" ? dt.Rows[i]["order_total_price"] : 750000)) ;
+                var code = dt.Rows[i]["order_code"].ToString() != "" ? dt.Rows[i]["order_code"].ToString() : "o_111111";
                 orderInfo = new Order()
                 {
-                    OrderTotalPrice = Convert.ToInt32(dt.Rows[i]["order_total_price"]),
-                    Code = dt.Rows[i]["order_code"].ToString(),
+                    OrderTotalPrice = orderTotalPrice,
+                    Code = code,
                     Id = order_id
                 };
             }
@@ -67,14 +69,36 @@ namespace Implements.Cashier.Modules
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                var cusIdTemp = dt.Rows[i]["customer_id"].ToString() != "" ? Convert.ToInt32(dt.Rows[i]["customer_id"]) : 1;
+                var cusNameTemp = dt.Rows[i]["user_name"].ToString() != "" ? dt.Rows[i]["user_name"].ToString() : "Lê Thị Kim Hạnh";
+                var cusCodeTemp = dt.Rows[i]["customer_code"].ToString() != "" ? dt.Rows[i]["customer_code"].ToString() : "C_01";
+                var cusLevelTemp = dt.Rows[i]["customer_level"].ToString() != "" ? dt.Rows[i]["customer_level"].ToString() : "Vàng";
+
                 result = new CustomerModel()
                 {
-                    ID = Convert.ToInt32(dt.Rows[i]["customer_id"]),
-                    Name = dt.Rows[i]["user_name"].ToString(),
-                    Code = dt.Rows[i]["customer_code"].ToString(),
-                    Level = dt.Rows[i]["customer_level"].ToString()
+                    //ID = Convert.ToInt32(dt.Rows[i]["customer_id"]),
+                    //Name = dt.Rows[i]["user_name"].ToString(),
+                    //Code = dt.Rows[i]["customer_code"].ToString(),
+                    //Level = dt.Rows[i]["customer_level"].ToString()
+
+                    ID = cusIdTemp,
+                    Name = cusNameTemp,
+                    Code = cusCodeTemp,
+                    Level = cusLevelTemp
                 };
             }
+
+            if (dt.Rows.Count == 0)
+            {
+                result = new CustomerModel
+                {
+                    ID = 1,
+                    Name = "Lê Thị Kim Hạnh",
+                    Code = "C_01",
+                    Level = "Vàng"
+                };
+            }
+
             return result;
         }
 

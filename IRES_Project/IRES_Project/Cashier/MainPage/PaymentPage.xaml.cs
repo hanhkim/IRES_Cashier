@@ -93,7 +93,7 @@ namespace IRES_Project.Cashier.MainPage
             {
                 MessageBox.Show("Thanh toan thành công");
                 IRES_Globals.Cashier.MemoryAction.Instance = null;
-                ViewModel.Cashier.Common.BreadCrumbViewModel.Instance.RemovePos("Table");
+                ViewModel.Cashier.Common.BreadCrumbViewModel.Instance.RemovePos("Bàn");
                 Switcher.Switch(new TablePage());
             } 
             else

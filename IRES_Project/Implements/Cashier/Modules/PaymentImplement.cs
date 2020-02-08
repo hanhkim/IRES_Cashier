@@ -54,8 +54,8 @@ namespace Implements.Cashier.Modules
         public bool WriteToBill(int order_id, int user_id, MoneyPayModel moneyPay, int customer_id)
         {
 
-            string query = $"INSERT INTO ires.BILL (BILL_CODE, ORDER_ID, ORDER_TOTAL_PRICE, CUSTOMER_ID, EMPLOYEE_ID, MONEY_CUSTOMER, MONEY_TIP, CREATED_DATETIME, UPDATED_BY )" +
-                $" values('BILL_{DateTime.Now.ToString("yyyyMMddHHmmssffff")}' , {order_id}, {moneyPay.TotalPay}, {customer_id}, {user_id}, {moneyPay.MoneyCustomer}, {moneyPay.MoneyCustomerTip}, '{DateTime.Now}', 'SCRIPT')";
+            string query = $"INSERT INTO ires.BILL (BILL_CODE, ORDER_ID, ORDER_TOTAL_PRICE, CUSTOMER_ID, EMPLOYEE_ID, PAYMENT, TIP, PROMOTION_ID, PROMOTION_COST, CREATED_DATETIME, UPDATED_BY )" +
+                $" values('BILL_{DateTime.Now.ToString("yyyyMMddHHmmssffff")}' , {order_id}, {moneyPay.TotalPay}, {customer_id}, {user_id}, {moneyPay.MoneyCustomer}, {moneyPay.MoneyCustomerTip}, null, 0, '{DateTime.Now}', {user_id})";
             WorkerToDB billToDB = new WorkerToDB();
 
             return billToDB.insertCommand(query);
