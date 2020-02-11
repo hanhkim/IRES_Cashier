@@ -37,5 +37,9 @@ namespace Model.Cashier
             get { return orderTotalPrice; }
             set { orderTotalPrice = value; }
         }
+
+        public int PersonQuantity { get => personQuantity; set => personQuantity = value; }
+
+        private int personQuantity;
     }
 }

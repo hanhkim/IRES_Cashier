@@ -37,7 +37,7 @@
             <RowDefinition Height=".1*"></RowDefinition>
             <RowDefinition Height=".9*"></RowDefinition>
           </Grid.RowDefinitions>
-          <Border Grid.Row="0" Background="#1630b3" Height="50" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2">
+          <Border Grid.Row="0"  Background="#144fe3" Height="50" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2">
             <DockPanel>
               <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="CashMultiple" Foreground="White" Margin="10 0 0 0" Height="25" Width="25" VerticalContentAlignment="Center"/>
@@ -67,7 +67,7 @@
                   <StackPanel Orientation="Vertical">
                     <Label FontWeight="Bold">Số tiền khách đưa:</Label>
                     <TextBox Height="50" Margin="5" Text="{Binding MoneyModel.MoneyCustomer}" BorderBrush="Black" BorderThickness="1" FontSize="18" Padding="5" TextAlignment="Right"></TextBox>
-                    <Button Content="Enter" Click="Button_Click_Money_Customer"></Button>
+                    <Button Content="Enter" Click="Button_Click_Money_Customer" Background="Green" Height="40" Width="300"></Button>
                     <TextBlock FontWeight="Bold"> <LineBreak/> Số tiền theo mệnh giá:</TextBlock>
                     <Grid>
                       <Grid.RowDefinitions>
@@ -106,7 +106,7 @@
               <RowDefinition Height="auto"></RowDefinition>
               <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Border Background="#1630b3" Grid.Row="0" BorderBrush="Black" Height="50"  BorderThickness="0 0 0 2" Padding="5">
+            <Border Background="#144fe3" Grid.Row="0" BorderBrush="Black" Height="50"  BorderThickness="0 0 0 2" Padding="5">
               <DockPanel VerticalAlignment="Center">
                 <materialDesign:PackIcon Kind="Cash100"  Foreground="White" Height="25" Width="25"/>
                 <Label FontWeight="Bold" Foreground="White">SỐ TIỀN PHẢI THU</Label>
@@ -175,7 +175,7 @@
             <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
               <TextBlock>
               <TextBox Width="200" Height="30" Text="{Binding MoneyModel.MoneyCustomerTip}"  BorderBrush="Black" TextAlignment="Right" BorderThickness="1 1 1 1" Padding="0 0 5 0" FontSize="18" Margin="0 0 3 0"></TextBox>
-              <Button Click="Button_Click">OK</Button>
+              <Button Background="Gray" Click="Button_Click">OK</Button>
               </TextBlock>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="0" >

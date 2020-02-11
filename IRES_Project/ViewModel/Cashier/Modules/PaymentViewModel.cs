@@ -44,12 +44,12 @@ namespace ViewModel.Cashier.Modules
             return moneyDetailPayment;
         }
 
-        public Boolean FinishPayment(int order_id, int table_id, int customer_id)
+        public Boolean FinishPayment(Order orderInfo, int table_id, CustomerModel cus, MoneyPayModel money)
         {
             int user_id = 1;
             PaymentImplement paymentImp = new PaymentImplement();
             
-            if (paymentImp.FinishPayment(order_id, user_id, table_id, MoneyModel, customer_id))
+            if (paymentImp.FinishPayment(orderInfo, user_id, table_id, money, cus))
             {
                 return true;
             } else

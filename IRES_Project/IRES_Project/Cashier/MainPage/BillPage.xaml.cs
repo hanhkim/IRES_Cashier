@@ -41,10 +41,10 @@ namespace IRES_Project.Cashier.MainPage
 
         public void LoadData(TableModel selectedTableInput)
         {
-            if (selectedTableInput != null) { 
+            if (selectedTableInput != null) {
                 tableSelected = selectedTableInput;
                 billVM = new BillViewModel(tableSelected.Id);
-                txtTableCode.Content = tableSelected.Code;
+                txtTableCode.Content = tableSelected.TableName;
                 DataContext = billVM;
             }
             MemoryAction.Instance.CurrentPage = "Hóa đơn";
@@ -62,7 +62,7 @@ namespace IRES_Project.Cashier.MainPage
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             float totalPay = (DataContext as BillViewModel).MoneyDetail.TotalPay;
-            Switcher.Switch(new PaymentPage(totalPay, billVM.OrderInfo.Id, tableSelected, billVM.CustomerInfo.ID));
+            Switcher.Switch(new PaymentPage(totalPay, billVM.OrderInfo, tableSelected, billVM.CustomerInfo));
             BreadCrumbViewModel.Instance.BreadCrumb.Add("Thanh toán");
         }
 

@@ -23,10 +23,10 @@ namespace Implements.Cashier.Modules
             WorkerToDB worker = new WorkerToDB();
             DataTable dt = worker.getRecordsCommand(query);
 
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                account.Role = dt.Rows[i]["role_id"].ToString();
-            }
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //    account.Role = dt.Rows[i]["role_id"].ToString();
+            //}
 
             return account;
         }

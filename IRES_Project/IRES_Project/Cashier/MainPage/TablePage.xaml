@@ -40,26 +40,33 @@
                   </Setter.Value>
                 </Setter>
               </MultiTrigger>
-              <Trigger Property="UIElement.IsEnabled" Value="False">
-                <Setter Property="TextElement.Foreground" TargetName="Bd">
-                  <Setter.Value>
-                    <DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}" />
-                  </Setter.Value>
-                </Setter>
-              </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
         </Setter.Value>
       </Setter>
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="IsEnabled" Value="True" />
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding StatusShow}" Value="True">
+          <Setter Property="IsEnabled" Value="True" />
+        </DataTrigger>
+      </Style.Triggers>
     </Style>
     <Style x:Key="btnTable" TargetType="Button">
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <DataTrigger Binding="{Binding StatusShow}" Value="True">
-          <Setter Property="Background" Value="#3B6D22"/>
+          <Setter Property="Background" Value="Red"/>
           <Setter Property="IsEnabled" Value="True"/>
         </DataTrigger>
       </Style.Triggers>
+    </Style>
+    <Style TargetType="Image" x:Key="image_button">
+      <!--<Style.Triggers>
+        <DataTrigger Binding="{Binding StatusShow}" Value="True">
+          <Setter Property="Source" Value="Ires_Project/Resources/Images/table_persons.png" />
+        </DataTrigger>
+      </Style.Triggers>-->
     </Style>
   </UserControl.Resources>
   <Grid Background="#CCCCCC">
@@ -87,7 +94,7 @@
                 <RowDefinition Height="1*" />
               </Grid.RowDefinitions>
               <Border Grid.Row="0" Background="#1630b3" Height="50" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0 0 0 2">
-                <DockPanel Background="#1630b3">
+                <DockPanel Background="#144fe3">
                   <materialDesign:PackIcon Kind="Gift" Height="20" Width="20" Foreground="White" Margin="5 0 0 2" VerticalAlignment="Center"/>
                   <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="White">
                     Chương trình khuyến mãi</Label>
@@ -137,20 +144,20 @@
               <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0 0 0 2">
-            <Grid Grid.Row="0">
-              <DockPanel Background="#1630b3">
-                <materialDesign:PackIcon Kind="ViewList" Height="25" Width="25" Foreground="White" Margin="10 0 5 0" VerticalAlignment="Center"/>
-                <Label VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Foreground="White">
-                  Danh sách bàn</Label>
-              </DockPanel>
-              <Button Margin="0 0 20 0" HorizontalAlignment="Right"  Width="100" Background="Gray"
+              <Grid Grid.Row="0">
+                <DockPanel Background="#144fe3">
+                  <materialDesign:PackIcon Kind="ViewList" Height="25" Width="25" Foreground="White" Margin="10 0 5 0" VerticalAlignment="Center"/>
+                  <Label VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Foreground="White">
+                    Danh sách bàn</Label>
+                </DockPanel>
+                <Button Margin="0 0 20 0" HorizontalAlignment="Right"  Width="100" Background="Gray"
                 Click="Button_Click_Refresh"
                 Content="{materialDesign:PackIcon Reload}"
                 ToolTip="Icon" />
-            </Grid>
+              </Grid>
             </Border>
             <ListBox Grid.Row="1" SelectedItem="{Binding SelectedFloor,UpdateSourceTrigger=PropertyChanged}" 
-        ItemsSource="{Binding ListFloors}" HorizontalAlignment="Center" Name="lsbFloor">
+                     ItemsSource="{Binding ListFloors}" HorizontalAlignment="Center" Name="lsbFloor">
               <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                   <WrapPanel IsItemsHost="True" />
@@ -160,24 +167,26 @@
 
                 <!-- Group Floor Show Table  -->
                 <DataTemplate >
-                  <Border Margin="0 0 5 2">
-                    <GroupBox BorderBrush="Black" BorderThickness="1" Width="550" Height="350" FontSize="14">
+                  <Border Margin="0 10 5 2">
+                    <GroupBox Padding="0"  BorderBrush="Black" BorderThickness="1" Width="1000" Height="650" FontSize="14">
                       <GroupBox.Header>
-                        <DockPanel>
-                          <TextBlock HorizontalAlignment="Left" DockPanel.Dock="Right"  >
+                        <Border Padding="5" Background="#3814c7">
+                          <DockPanel>
+                            <TextBlock HorizontalAlignment="Left" DockPanel.Dock="Right"  >
                             <Label  Foreground="White">Đang hoạt động: 6 - Bàn trống: 4 - Đã đặt: 2</Label>
-                          </TextBlock>  
-                          <TextBlock DockPanel.Dock="Left">
+                            </TextBlock>
+                            <TextBlock DockPanel.Dock="Left">
                             <materialDesign:PackIcon Margin="0 0 0 5" Foreground="White" FontWeight="Bold" Kind="FloorPlan" Width="18" Height="18"/>
                             <Label Foreground="White" Content="{Binding Name}" FontWeight="Bold" FontSize="14"/>
-                          </TextBlock>
-                         
-                        </DockPanel>
-                        
+                            </TextBlock>
+
+                          </DockPanel>
+                        </Border>
+
                       </GroupBox.Header>
                       <ListBox SelectedItem="{Binding SelectedTable, UpdateSourceTrigger=PropertyChanged}" Name="lbxTable"
-                HorizontalAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="lbxTable_SelectionChanged"
-                 ItemsSource="{Binding ListTables}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                          HorizontalAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="lbxTable_SelectionChanged"
+                          ItemsSource="{Binding ListTables}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemsPanel>
                           <ItemsPanelTemplate>
                             <WrapPanel IsItemsHost="True" />
@@ -185,16 +194,12 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                           <DataTemplate>
-                            <StackPanel>
-                              <Button Margin="10 10 10 0" Height="70" Style="{StaticResource btnTable}" Tag="{Binding Id}" Click="Button_Click">
-                                <Image Margin="10">
-                                  <Image.Source>
-                                    <BitmapImage UriSource="../../Resources/Images/table_persons.png" />
-                                  </Image.Source>
-                                </Image>
-                              </Button>
-                              <Label HorizontalAlignment="Center" Content="{Binding TableName}" ></Label>
-                            </StackPanel>
+                            <Button Margin="10" Height="110" Style="{StaticResource btnTable}" Tag="{Binding Id}" Click="Button_Click">
+                              <StackPanel Height="100" Width="100">
+                                <Image Style="{StaticResource image_button}" Margin="20 20 20 5" Source="../../Resources/Images/table.png"/>
+                                <Label HorizontalAlignment="Center" Margin="0" Padding="0" Content="{Binding TableName}" ></Label>
+                              </StackPanel>
+                            </Button>
                           </DataTemplate>
                         </ListBox.ItemTemplate>
                       </ListBox>

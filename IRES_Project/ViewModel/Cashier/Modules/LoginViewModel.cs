@@ -38,7 +38,11 @@ namespace ViewModel.Cashier.Modules
             LoginImplementation loginImp = new LoginImplementation();
             UserModel user = loginImp.getUser(new UserModel(UserName, PassWord));
 
-            if (user.Role != null && user.Role == "3")
+            //if (user.Role != null && user.Role == "3")
+            //{
+            //    return true;
+            //}
+            if (user != null)
             {
                 return true;
             }

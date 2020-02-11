@@ -43,13 +43,15 @@ namespace Implements.Cashier.Modules
             var orderInfo = new Order();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                var orderTotalPrice = (Convert.ToInt32(dt.Rows[i]["order_total_price"].ToString() != "" ? dt.Rows[i]["order_total_price"] : 750000)) ;
+                var orderTotalPrice = (Convert.ToInt32(dt.Rows[i]["order_total_price"].ToString() != "" ? dt.Rows[i]["order_total_price"] : 280000)) ;
                 var code = dt.Rows[i]["order_code"].ToString() != "" ? dt.Rows[i]["order_code"].ToString() : "o_111111";
+                var persons = dt.Rows[i]["person_quantity"].ToString() != "" ? Convert.ToInt32(dt.Rows[i]["person_quantity"]) : 4;
                 orderInfo = new Order()
                 {
                     OrderTotalPrice = orderTotalPrice,
                     Code = code,
-                    Id = order_id
+                    Id = order_id,
+                    PersonQuantity = persons
                 };
             }
 
@@ -70,7 +72,7 @@ namespace Implements.Cashier.Modules
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 var cusIdTemp = dt.Rows[i]["customer_id"].ToString() != "" ? Convert.ToInt32(dt.Rows[i]["customer_id"]) : 1;
-                var cusNameTemp = dt.Rows[i]["user_name"].ToString() != "" ? dt.Rows[i]["user_name"].ToString() : "Lê Thị Kim Hạnh";
+                var cusNameTemp = dt.Rows[i]["user_name"].ToString() != "" ? dt.Rows[i]["user_name"].ToString() : "Kim Hạnh";
                 var cusCodeTemp = dt.Rows[i]["customer_code"].ToString() != "" ? dt.Rows[i]["customer_code"].ToString() : "C_01";
                 var cusLevelTemp = dt.Rows[i]["customer_level"].ToString() != "" ? dt.Rows[i]["customer_level"].ToString() : "Vàng";
 
@@ -93,7 +95,7 @@ namespace Implements.Cashier.Modules
                 result = new CustomerModel
                 {
                     ID = 1,
-                    Name = "Lê Thị Kim Hạnh",
+                    Name = "Kim Hạnh",
                     Code = "C_01",
                     Level = "Vàng"
                 };

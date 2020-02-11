@@ -49,7 +49,6 @@ namespace IRES_Project.Cashier.MainPage
 
         private void Button_Click_Refresh(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Refreshing");
             LoadData();
         }
 

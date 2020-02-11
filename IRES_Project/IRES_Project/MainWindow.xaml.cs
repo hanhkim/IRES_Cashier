@@ -20,11 +20,10 @@ namespace IRES_Project
         {
 
             InitializeComponent();
-            //ReceiveNotifyRabbitMQ rabbitMQConnection = new ReceiveNotifyRabbitMQ();
 
             //Login to enter main page
-          //  Login loginWindow = new Login();
-          //  loginWindow.ShowDialog();
+            //Login loginWindow = new Login();
+            //loginWindow.ShowDialog();
 
             // listening notify
             ReceiveNotifyRabbitMQ();
@@ -61,7 +60,7 @@ namespace IRES_Project
                     if (message != null)
                     {
                         MessageBox.Show("new notify");
-                        if (BreadCrumbViewModel.Instance.BreadCrumb.Last() == "Table")
+                        if (BreadCrumbViewModel.Instance.BreadCrumb.Last() == "Bàn")
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate {
                                 Switcher.Switch(new TablePage());

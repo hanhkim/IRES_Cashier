@@ -23,6 +23,8 @@ namespace ViewModel.Cashier.Modules
             OrderInfo = getOrderInfo(order_id);
             ListOrderDetail = getDishesInfo(order_id);
 
+            OrderInfo.OrderTotalPrice = CaculatorTotalPrice();
+
             MoneyDetail = new MoneyDetailMustPayModel();
             MoneyDetail.CaculateMoneyDetail(InfoContant.VAT, OrderInfo.OrderTotalPrice);
         }
@@ -82,7 +84,18 @@ namespace ViewModel.Cashier.Modules
         {
             BillOrderImplement orderInfo = new BillOrderImplement();
             return orderInfo.getDishesInfo(order_id);
-        }   
+        }
 
+        public int CaculatorTotalPrice()
+        {
+            int total = 0;
+            for (int i = 0; i< ListOrderDetail.Count; i++)
+            {
+                var temp = ListOrderDetail.ElementAt(i);
+                total += temp.DishTotalCost;
+            }
+
+            return total;
+        }
     }
 }

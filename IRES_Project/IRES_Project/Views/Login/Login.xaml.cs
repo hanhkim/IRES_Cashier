@@ -67,7 +67,6 @@ namespace IRES_Project.Views
 
         private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("123");
             System.Windows.Application.Current.Shutdown();
         }
     }
