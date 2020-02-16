@@ -17,19 +17,17 @@ namespace Implements.Cashier.Modules
 
         }
 
-        public List<FloorModel> GetFloors()
+        public FloorModel GetListTables(string tablePosition)
         {
-            string query = $"SELECT * FROM ires.table_info where active=true";
-            List<FloorModel> result = new List<FloorModel>();
+            string query = $"SELECT * FROM ires.table_info where table_position='{tablePosition}' AND active=true";
+            FloorModel result = new FloorModel();
+            result.Name = tablePosition;
             WorkerToDB tableToDB = new WorkerToDB();
 
             DataTable dtFloor = tableToDB.getRecordsCommand(query);
 
             for (int i = 0; i < dtFloor.Rows.Count; i++)
             {
-                var FloorName = dtFloor.Rows[i]["table_position"].ToString();   
-                var checkFloor = result.FirstOrDefault(x => x.Name == FloorName);
-
                 var table = new TableModel()
                 {
                     Code = dtFloor.Rows[i]["table_code"].ToString(),
@@ -38,29 +36,20 @@ namespace Implements.Cashier.Modules
                     TableName = "Bàn " + dtFloor.Rows[i]["table_number"].ToString()
                 };
 
-                if (checkFloor == null) // if floor not exist => create new floor
+                if (table.StatusShow == true)
                 {
-                    result.Add(new FloorModel()
-                    {
-                        Name = FloorName,
-                        ListTables = new List<TableModel>() { table }
-                    });
+                    ++result.CountBusyTables;
+                }
+                else
+                {
+                    ++result.CountEmptyTables;
+                }
 
-                }
-                else // else add table to old floor
-                {
-                    checkFloor.ListTables.Add(table);
-                }
+                result.ListTables.Add(table);
             }
 
-            // sort table in floor
-            for (int i = 0; i< result.Count; i++)
-            {
-                result[i].ListTables = result[i].ListTables.OrderBy(x => x.Code).ToList();
-            }
-
-            // return sort floor
-            return result.OrderBy(x => x.Name).ToList();
+            result.ListTables = result.ListTables.OrderBy(x => x.Code).ToList();
+            return result;
         }
 
     }

@@ -25,6 +25,7 @@ namespace IRES_Project.Cashier.MainPage
     public partial class TablePage : UserControl
     {
         private TableViewModel tbVM = null;
+        string floorChosen = "Tầng 1";
         public TablePage()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace IRES_Project.Cashier.MainPage
 
         public void LoadData()
         {
-            tbVM = new TableViewModel(); // declare table list
+            tbVM = new TableViewModel(floorChosen); // declare table list
             DataContext = tbVM;
             MemoryAction.Instance.CurrentPage = "Bàn";
             BreadCrumbViewModel.Instance.RemovePos("Bàn");
@@ -55,6 +56,26 @@ namespace IRES_Project.Cashier.MainPage
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void cmbChooseFloor_DropDownClosed(object sender, EventArgs e)
+        {
+            if (cmbChooseFloor.SelectedValue.ToString() == "Tầng 1")
+            {
+                floorChosen = "Tầng 1";
+                tbVM = new TableViewModel(floorChosen);
+                DataContext = tbVM;
+            }
+            else if (cmbChooseFloor.SelectedValue.ToString() == "Tầng 2")
+            {
+                floorChosen = "Tầng 2";
+                tbVM = new TableViewModel(floorChosen);
+                DataContext = tbVM;
+            }
+            else
+            {
+                MessageBox.Show("Mời bạn chọn lại tầng nhé!");
+            }
         }
     }
 }

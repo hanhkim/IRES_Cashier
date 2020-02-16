@@ -10,13 +10,7 @@
              mc:Ignorable="d"
              FontSize="16"
              >
-  <StackPanel Background="#CCCCCC">
-    <!--<StackPanel.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF97BEBD" Offset="0" />
-            <GradientStop Color="White" Offset="1" />
-        </LinearGradientBrush>
-    </StackPanel.Background>-->
+  <StackPanel Background="#faf5f5">
     <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
     <menubar:BreadCrumbPath></menubar:BreadCrumbPath>
 

@@ -12,23 +12,22 @@ namespace ViewModel.Cashier.Modules
 {
     public class TableViewModel: BaseViewModel
     {
-        private List<FloorModel>  _ListFloors;
-        public List<FloorModel> ListFloors
+        //private List<FloorModel>  _ListFloors;
+        private FloorModel _ListFloors;
+
+        public TableViewModel(string tablePosition)
         {
-            get { return _ListFloors; }
-            set { _ListFloors = value; OnPropertyChanged(); }
+            ListFloors = loadTable(tablePosition);
         }
 
-        public TableViewModel()
-        {
-            ListFloors = loadTable();
-        }
+       
+        public FloorModel ListFloors { get => _ListFloors; set => _ListFloors = value; }
 
-        public List<FloorModel> loadTable()
+        public FloorModel loadTable(string idFloor)
         {
             TableImplement tableImp = new TableImplement();
 
-            var result = tableImp.GetFloors();
+            var result = tableImp.GetListTables(idFloor);
 
             return result;
         }

@@ -11,13 +11,7 @@
       FontSize="16"
      >
 
-  <StackPanel Background="#CCCCCC">
-    <!--<StackPanel.Background>
-      <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FF97BEBD" Offset="0" />
-        <GradientStop Color="White" Offset="1" />
-      </LinearGradientBrush>
-    </StackPanel.Background>-->
+  <StackPanel Background="#faf5f5">
     <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
     <menubar:BreadCrumbPath></menubar:BreadCrumbPath>
 
@@ -37,7 +31,7 @@
             <RowDefinition Height=".1*"></RowDefinition>
             <RowDefinition Height=".9*"></RowDefinition>
           </Grid.RowDefinitions>
-          <Border Grid.Row="0"  Background="#144fe3" Height="50" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2">
+          <Border Grid.Row="0" Background="#144fe3" Height="50" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2">
             <DockPanel>
               <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="CashMultiple" Foreground="White" Margin="10 0 0 0" Height="25" Width="25" VerticalContentAlignment="Center"/>
@@ -58,7 +52,7 @@
                     <Button Height="50" Margin="0 5" Background="Brown">ATM</Button>
                     <Button Height="50" Margin="0 5" Background="Brown">VISA</Button>
                     <Button Height="50" Margin="0 5" Background="Brown">MASTER CARD</Button>
-                    <Button Height="50" Margin="0 5" Background="Orange">VÍ ĐIỆN TỬ</Button>
+                    <Button Height="50" Margin="0 5" Background="Orange" Click="Button_Click_MoMoPayment">VÍ ĐIỆN TỬ</Button>
                   </StackPanel>
                 </Border>
               </Grid>

@@ -78,11 +78,6 @@ namespace Implements.Cashier.Modules
 
                 result = new CustomerModel()
                 {
-                    //ID = Convert.ToInt32(dt.Rows[i]["customer_id"]),
-                    //Name = dt.Rows[i]["user_name"].ToString(),
-                    //Code = dt.Rows[i]["customer_code"].ToString(),
-                    //Level = dt.Rows[i]["customer_level"].ToString()
-
                     ID = cusIdTemp,
                     Name = cusNameTemp,
                     Code = cusCodeTemp,

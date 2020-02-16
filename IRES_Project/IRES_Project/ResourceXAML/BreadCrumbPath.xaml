@@ -14,7 +14,7 @@
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
       <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
         <materialDesign:DialogHost.DialogContent>
-          <StackPanel Width="250" Orientation="Horizontal" Margin="0" Height="60">
+          <StackPanel Width="250" Orientation="Horizontal" Margin="0" Height="60" Background="Azure">
             <materialDesign:PackIcon  Kind="Folder" Foreground="{StaticResource PrimaryHueMidBrush}" Width="30" Height="30" VerticalAlignment="Center" Margin="10 10 5 10"/>
               <TextBlock Foreground="Gray" Width="100" Margin="0 10 10 10" VerticalAlignment="Center" FontWeight="Bold" TextWrapping="Wrap">
                     Bàn 1 có khách
@@ -26,12 +26,12 @@
           <Button Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
              Padding="0" Margin="0 0 10 0"
              ToolTip="Icon">
-            <materialDesign:PackIcon Kind="BellPlus" Height="30" Width="30"/>
+            <materialDesign:PackIcon Foreground="#1c66ed" Kind="BellPlus" Height="30" Width="30"/>
           </Button>
         </Grid>
       </materialDesign:DialogHost>
       <Label VerticalContentAlignment="Center" FontSize="18" Content="Xin chào, Hạnh"></Label>
-      <materialDesign:PackIcon Kind="AccountCircle" Height="40" Width="40" VerticalAlignment="Center" Margin="0 0 10 0"/>
+      <materialDesign:PackIcon Foreground="#1c66ed" Kind="AccountCircle" Height="40" Width="40" VerticalAlignment="Center" Margin="0 0 10 0"/>
     </StackPanel>
     <ListView DockPanel.Dock="Left" ItemsSource="{Binding BreadCrumb}" Background="#FFFFFF"
             MinWidth="300" BorderThickness="0"
@@ -47,21 +47,18 @@
         <Grid Margin="0,0,0,0">
           <Grid>
             <Grid.ColumnDefinitions>
-              <!--<ColumnDefinition Width="20"/>-->
               <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="20"/>
-            </Grid.ColumnDefinitions>
-            <!--<Path Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFC64242" Data="F1 M 112,144L 104,144L 112,160L 104,176L 112,176" HorizontalAlignment="Stretch" Height="40" VerticalAlignment="Stretch" Width="Auto"/>-->
-            <Border Grid.Column="0" Width="80" Background="White">
-                <Button Height="38" BorderThickness="0" Background="White" Margin="0" Padding="0" FontSize="13" Click="Button_Click">
-                  <Button.Content>
-                    <Label Content="{Binding}" FontSize="14" Foreground="#007bff"/>
-                  </Button.Content>
-                </Button>
-            </Border>
+          <ColumnDefinition Width="20"/>
+          </Grid.ColumnDefinitions>
+          <Border Grid.Column="0" Width="80" Background="White">
+            <Button Height="38" BorderThickness="0" Background="White" Margin="0" Padding="0" FontSize="13" Click="Button_Click">
+              <Button.Content>
+                <Label Content="{Binding}" FontSize="14" Foreground="#007bff"/>
+              </Button.Content>
+            </Button>
+          </Border>
               <Path Grid.Column="2" Stretch="Fill" Stroke="#007bff" Fill="White" Data="F1 M 168,144L 176,160L 168,176" Height="40" StrokeLineJoin="Bevel"
-                  VerticalAlignment="Center" Width="20" HorizontalAlignment="Right"  d:LayoutOverrides="GridBox"/>
-              <!--StrokeLineJoin="Round"-->
+              VerticalAlignment="Center" Width="20" HorizontalAlignment="Right"  d:LayoutOverrides="GridBox"/>
             </Grid>
         </Grid>
       </DataTemplate>

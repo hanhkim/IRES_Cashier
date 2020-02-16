@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,13 +15,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ViewModel.Cashier.Modules;
 using Model.Cashier;
+using System.Net;
+using Newtonsoft.Json.Linq;
+using IRES_Project.MoMo;
+
 
 namespace IRES_Project.Cashier.MainPage
 {
     /// <summary>
     /// Interaction logic for PaymentPage.xaml
     /// </summary>
-    public partial class PaymentPage : UserControl
+    public partial class PaymentPage : System.Windows.Controls.UserControl
     {
         PaymentViewModel paymentVM;
         TableModel tableSelected = new TableModel();
@@ -87,24 +92,118 @@ namespace IRES_Project.Cashier.MainPage
 
         private void Button_Payement_Click(object sender, RoutedEventArgs e)
         {
+
             if (paymentVM.MoneyModel.MoneyCustomer <= 0 || paymentVM.MoneyModel.MoneyReturnCustomer < 0)
             {
-                MessageBox.Show("Có sự cố xảy ra!!! Vui lòng kiểm tra lại");
+                System.Windows.Forms.MessageBox.Show("Có sự cố xảy ra!!! Vui lòng kiểm tra lại");
                 return;
             }
+            string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
 
-            MoneyPayModel money = paymentVM.MoneyModel;
+            GoToPayment("cash", billId);
+        }
 
-            if (paymentVM.FinishPayment(orderinfo, tableId, cus, money))
+        public void GoToPayment(string type, string billId)
+        {
+            //MoneyPayModel money = paymentVM.MoneyModel;
+
+            if (paymentVM.FinishPayment(orderinfo, tableId, cus, paymentVM.MoneyModel, type, billId))
             {
-                MessageBox.Show("Thanh toan thành công");
+                System.Windows.Forms.MessageBox.Show("Thanh toan thành công");
                 IRES_Globals.Cashier.MemoryAction.Instance = null;
                 ViewModel.Cashier.Common.BreadCrumbViewModel.Instance.RemovePos("Bàn");
                 Switcher.Switch(new TablePage());
-            } 
+            }
             else
             {
-                MessageBox.Show("Có sự cố xảy ra!!! Vui lòng kiểm tra lại");
+                System.Windows.Forms.MessageBox.Show("Có sự cố xảy ra!!! Vui lòng kiểm tra lại");
+            }
+        }
+
+        string endpointApp = "";
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private void Button_Click_MoMoPayment(object sender, RoutedEventArgs e)
+        {
+            // Request params need to request to MoMo system
+            //string endpoint = endpointApp != "" ? endpointApp : "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+            //string partnerCode = "MOMO5RGX20191128";
+            //string accessKey = "M8brj9K6E22vXoDB";
+            //string secretKey = "nqQiVSgDMy809JoPF6OzP5OdBUB550Y4";
+            //string orderInfo = "test";
+            //string returnUrl = "https://momo.vn/";
+            //string notifyUrl = "https://momo.vn/notify";
+
+            string endpoint = endpointApp != "" ? endpointApp : "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+            string partnerCode = "MOMOCHGB20200212";
+            string accessKey = "cPdPFP0OLjDRtz1P";
+            string secretKey = "WdxZhXuftD0GIZB64kn7LCj8yIqbnJAd";
+            string orderInfo = "test_hanh";
+            string returnUrl = "https://momo.vn/";
+            string notifyUrl = "https://momo.vn/notify";
+
+            string amount = "1000";
+            string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            string requestId = Guid.NewGuid().ToString();
+            string extraData = "";
+
+            // Before sign HMAC SHA256 signature
+            string rawHash = "partnerCode=" +
+                partnerCode + "&accessKey=" +
+                accessKey + "&requestId=" +
+                requestId + "&amount=" +
+                amount + "&orderId=" +
+                billId + "&orderInfo=" +
+                orderInfo + "&returnUrl=" +
+                returnUrl + "&notifyUrl=" +
+                notifyUrl + "&extraData=" + extraData;
+
+            MoMoSecurity crypto = new MoMoSecurity();
+
+            // sign signature SHA256
+            string signature = crypto.signSHA256(rawHash, secretKey);
+          //  System.Windows.Forms.MessageBox.Show(signature);
+
+            // Build body json request
+            JObject message = new JObject
+            {
+                { "partnerCode", partnerCode },
+                { "accessKey", accessKey },
+                { "requestId", requestId },
+                { "amount", amount },
+                { "orderId", billId },
+                { "orderInfo", orderInfo },
+                { "returnUrl", returnUrl },
+                { "notifyUrl", notifyUrl },
+                { "extraData", extraData },
+                { "requestType", "captureMoMoWallet" },
+                { "signature", signature }
+
+            };
+
+            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+
+            JObject jmessage = JObject.Parse(responseFromMomo);
+            log.Debug("Return from MoMo: " + jmessage.ToString());
+            DialogResult result = System.Windows.Forms.MessageBox.Show(responseFromMomo, "Open in browser", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                //yes...
+                System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
+                DialogResult result1 = System.Windows.Forms.MessageBox.Show("Thanh toán thành công? ", "Kết quả Thanh toán", MessageBoxButtons.OKCancel);
+
+                if (result1 == DialogResult.OK)
+                {
+                    // thanh toán thành công
+                    GoToPayment("momo", billId);
+                } else if ( result1 == DialogResult.Cancel)
+                {
+                    // thanh toán thất bại
+                }
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                //no...
             }
         }
     }

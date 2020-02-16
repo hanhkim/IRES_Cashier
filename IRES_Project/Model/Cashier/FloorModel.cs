@@ -34,12 +34,11 @@ namespace Model.Cashier
             set { _Index = value; }
         }
 
-        //private TableModel _SelectedTable;
+        private int countEmptyTables;
+        private int countBusyTables;
 
-        //public TableModel SelectedTable
-        //{
-        //    get { return _SelectedTable; }
-        //    set { _SelectedTable = value; OnPropertyChanged(); }
-        //}
+
+        public int CountEmptyTables { get => countEmptyTables; set => countEmptyTables = value; }
+        public int CountBusyTables { get => countBusyTables; set => countBusyTables = value; }
     }
 }
