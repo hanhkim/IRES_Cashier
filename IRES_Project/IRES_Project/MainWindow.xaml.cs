@@ -8,6 +8,9 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using ViewModel.Cashier.Common;
 using IRES_Project.Views;
+using System.Media;
+using WMPLib;
+using System.IO;
 
 namespace IRES_Project
 {
@@ -20,10 +23,6 @@ namespace IRES_Project
         {
 
             InitializeComponent();
-
-            //Login to enter main page
-            //Login loginWindow = new Login();
-            //loginWindow.ShowDialog();
 
             // listening notify
             ReceiveNotifyRabbitMQ();
@@ -51,7 +50,7 @@ namespace IRES_Project
                 var channel = conn.CreateModel();
 
                 var consumer = new EventingBasicConsumer(channel);
-
+                
                 consumer.Received += (model, ea) =>
                 {
                     var body = ea.Body;
@@ -59,7 +58,10 @@ namespace IRES_Project
 
                     if (message != null)
                     {
+                        SoundPlayer snd = new SoundPlayer("../Resources/musics/when.wav");
+                        snd.Play();
                         MessageBox.Show("new notify");
+
                         if (BreadCrumbViewModel.Instance.BreadCrumb.Last() == "Bàn")
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate {
@@ -73,9 +75,9 @@ namespace IRES_Project
                                      consumer: consumer);
 
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("Loi roai");
+                MessageBox.Show(e.ToString(), "Lỗi kết nối Rabbitmq");
             }
         }
 

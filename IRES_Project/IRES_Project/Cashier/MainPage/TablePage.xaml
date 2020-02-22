@@ -103,29 +103,29 @@
               </Border>
               <Grid Grid.Row="1" Background="#eeeeee">
                 <ListBox Margin="5,5,5,5" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Top">
-                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
-                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <CheckBox Name="MangoShakeCheckBox">
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" CornerRadius="8">
+                    <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox  Name="KM1" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Text="Mango Shake"></TextBlock>
+                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
                   </Border>
-                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
-                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <CheckBox Name="d">
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" CornerRadius="8">
+                    <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox  Name="KM2" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Text="Mango Shake"></TextBlock>
+                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
                   </Border>
-                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
-                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <CheckBox Name="f">
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" CornerRadius="8">
+                    <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox  Name="KM3" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Text="Mango Shake"></TextBlock>
+                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 60%"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>

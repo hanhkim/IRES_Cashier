@@ -125,15 +125,6 @@ namespace IRES_Project.Cashier.MainPage
 
         private void Button_Click_MoMoPayment(object sender, RoutedEventArgs e)
         {
-            // Request params need to request to MoMo system
-            //string endpoint = endpointApp != "" ? endpointApp : "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-            //string partnerCode = "MOMO5RGX20191128";
-            //string accessKey = "M8brj9K6E22vXoDB";
-            //string secretKey = "nqQiVSgDMy809JoPF6OzP5OdBUB550Y4";
-            //string orderInfo = "test";
-            //string returnUrl = "https://momo.vn/";
-            //string notifyUrl = "https://momo.vn/notify";
-
             string endpoint = endpointApp != "" ? endpointApp : "https://test-payment.momo.vn/gw_payment/transactionProcessor";
             string partnerCode = "MOMOCHGB20200212";
             string accessKey = "cPdPFP0OLjDRtz1P";
@@ -142,7 +133,8 @@ namespace IRES_Project.Cashier.MainPage
             string returnUrl = "https://momo.vn/";
             string notifyUrl = "https://momo.vn/notify";
 
-            string amount = "1000";
+            string amount = paymentVM.MoneyModel.TotalPay.ToString();
+            //string amount = "1000";
             string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
             string requestId = Guid.NewGuid().ToString();
             string extraData = "";
