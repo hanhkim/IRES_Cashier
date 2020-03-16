@@ -108,6 +108,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MoMo\MoMoPayment.cs" />
     <Compile Include="MoMo\MoMoSecurity.cs" />
     <Compile Include="MoMo\PaymentRequest.cs" />
     <Compile Include="ResourceXAML\BreadCrumbPath.xaml.cs">
@@ -237,6 +238,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\momo.jpg" />
+    <Resource Include="Resources\Images\cash.png" />
+    <Resource Include="Resources\Images\logo-momo.png" />
     <Content Include="Resources\musics\when.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

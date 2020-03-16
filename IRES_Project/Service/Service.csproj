@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ApiBackendService.cs" />
     <Compile Include="Modules\SQLExecute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RabbitMQ\ReceiveNotifyRabbitMQ.cs" />

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Service.Modules;
 
 namespace Implements.Workers
@@ -17,12 +18,20 @@ namespace Implements.Workers
         }    
         public DataTable getRecordsCommand(string query)
         {
+            try
+            {
+                SQLExcute sqlExecute = new SQLExcute();
 
-            SQLExcute sqlExecute= new SQLExcute();
+                DataTable dt = sqlExecute.GetExcuteQuery(query);
 
-            DataTable dt = sqlExecute.GetExcuteQuery(query);
-
-            return dt;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Get records loi");
+                return null;
+            }
+           
         }
 
         public Boolean updateCommand(string query)
