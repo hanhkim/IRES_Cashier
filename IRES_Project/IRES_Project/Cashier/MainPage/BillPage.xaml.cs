@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IRES_Globals.Cashier;
+using Model.Cashier;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using ViewModel.Cashier.Modules;
 using ViewModel.Cashier.Common;
-using IRES_Project.Cashier.MainPage;
-using IRES_Globals.Cashier;
-using Model.Cashier;
+using ViewModel.Cashier.Modules;
 
 namespace IRES_Project.Cashier.MainPage
 {
@@ -27,6 +14,7 @@ namespace IRES_Project.Cashier.MainPage
     {
         TableModel tableSelected = new TableModel();
         BillViewModel billVM;
+        float promotionMoney = 0;
         public BillPage()
         {
             InitializeComponent();
@@ -41,20 +29,28 @@ namespace IRES_Project.Cashier.MainPage
 
         public void LoadData(TableModel selectedTableInput)
         {
+            if (selectedTableInput.Promotion != null)
+            {
+                PromotionHard(selectedTableInput.Promotion);
+            }
             if (selectedTableInput != null) {
                 tableSelected = selectedTableInput;
-                billVM = new BillViewModel(tableSelected.Id);
+
+                billVM = new BillViewModel(tableSelected.Id, tableSelected.TipMoney, promotionMoney);
                 txtTableCode.Content = tableSelected.TableName;
                 DataContext = billVM;
             }
             MemoryAction.Instance.CurrentPage = "Hóa đơn";
+            //tipMoney.Text = selectedTableInput.TipMoney.ToString();
+
+            promotionText.Text = selectedTableInput.Promotion;
         }
 
         public BillPage(int i)
         {
             InitializeComponent();
 
-            BillViewModel billVM = new BillViewModel(i);
+            BillViewModel billVM = new BillViewModel(i, tableSelected.TipMoney, 35000);
 
             DataContext = billVM;
         }
@@ -69,6 +65,30 @@ namespace IRES_Project.Cashier.MainPage
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new TablePage());
+        }
+
+        private void Button_Click_Add_Promotion(object sender, RoutedEventArgs e)
+        {
+            string promotion = promotionText.Text;
+            PromotionHard(promotion);
+        }
+
+        private void PromotionHard(string promotion)
+        {
+            if (promotion == "KM1")
+            {
+                promotionMoney = 35000;
+            }
+            else if (promotion == "KM2")
+            {
+                promotionMoney = 50000;
+            }
+            else
+            {
+                MessageBox.Show("Mã khuyến mãi không hợp lệ");
+            }
+
+         //   discountPromotionText.Text = promotionMoney.ToString();
         }
     }
 }

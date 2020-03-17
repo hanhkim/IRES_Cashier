@@ -40,6 +40,8 @@ namespace IRES_Project.Cashier.MainPage
         public PaymentPage()
         {
             InitializeComponent();
+            inputMoney.Focus();
+            inputMoney.Text = "000";
         }
 
         public PaymentPage(float totalPay, Order orderInfo, TableModel tableSelected, CustomerModel customer)                             
@@ -49,6 +51,9 @@ namespace IRES_Project.Cashier.MainPage
             orderinfo = orderInfo;
             cus = customer;
             LoadData(totalPay, orderInfo.Id, tableSelected);
+
+            inputMoney.Focus();
+            inputMoney.Text = "000";
         }
 
         public void LoadData(float totalPay, int orderId, TableModel tableSelected)
@@ -112,7 +117,7 @@ namespace IRES_Project.Cashier.MainPage
 
             if (paymentVM.FinishPayment(orderinfo, tableId, cus, paymentVM.MoneyModel, type, billId))
             {
-                System.Windows.Forms.MessageBox.Show("Thanh toan thành công");
+                System.Windows.Forms.MessageBox.Show("Thanh toán thành công");
                 // send api to backend
                 ApiBackendService apiBackend = new ApiBackendService();
                 await apiBackend.SendApiToBackend(orderinfo.Id);
@@ -130,6 +135,52 @@ namespace IRES_Project.Cashier.MainPage
 
 
         string endpointApp = "";
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyUp += HandleKeyPress;
+        }
+
+        private void HandleKeyPress(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.F1:
+                    paymentVM.MoneyModel.MoneyCustomer = 100000;
+                    break;
+                case Key.F2:
+                    paymentVM.MoneyModel.MoneyCustomer = 200000;
+                    break;
+                case Key.F3:
+                    paymentVM.MoneyModel.MoneyCustomer = 300000;
+                    break;
+                case Key.F4:
+                    paymentVM.MoneyModel.MoneyCustomer = 400000;
+                    break;
+                case Key.F5:
+                    paymentVM.MoneyModel.MoneyCustomer = 500000;
+                    break;
+                case Key.F6:
+                    paymentVM.MoneyModel.MoneyCustomer = 600000;
+                    break;
+                case Key.F7:
+                    paymentVM.MoneyModel.MoneyCustomer = 700000;
+                    break;
+                case Key.F8:
+                    paymentVM.MoneyModel.MoneyCustomer = 800000;
+                    break;
+                case Key.F9:
+                    paymentVM.MoneyModel.MoneyCustomer = 900000;
+                    break;
+                case Key.Oem3:
+                    paymentVM.MoneyModel.MoneyCustomer = 1000000;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private void Button_Click_MoMoPayment(object sender, RoutedEventArgs e)
@@ -150,5 +201,7 @@ namespace IRES_Project.Cashier.MainPage
 
             }
         }
+    
+
     }
 }

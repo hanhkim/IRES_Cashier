@@ -9,6 +9,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d"
       FontSize="16"
+      Loaded="UserControl_Loaded"
      >
 
   <StackPanel Background="#faf5f5">
@@ -54,15 +55,26 @@
                         <Label VerticalAlignment="Center" Margin="0" Foreground="White" FontSize="14" Content="TIỀN MẶT" ></Label>
                       </StackPanel>
                     </Button>
-                    <Button Height="50" Margin="0 5" Background="Brown">ATM</Button>
-                    <Button Height="50" Margin="0 5" Background="Brown">VISA</Button>
-                    <Button Height="50" Margin="0 5" Background="Brown">MASTER CARD</Button>
+                    <!--<Button Height="50" Margin="0 5" Background="Brown">ATM</Button>-->
+                    <!--<Button Height="50" Margin="0 5" Background="Brown">VISA</Button>-->
+                    <!--<Button Height="50" Margin="0 5" Background="Brown">MASTER CARD</Button>-->
                     <Button Height="50" Margin="0 5" Background="#ae2070" Click="Button_Click_MoMoPayment">
                       <StackPanel Orientation="Horizontal">
                         <Image Height="30" Width="30" Source="../../Resources/Images/logo-momo.png"/>
                         <Label VerticalAlignment="Center" Margin="0" Foreground="White" FontSize="14" Content="MOMO" ></Label>
                       </StackPanel>
                     </Button>
+                    <Border BorderBrush="Black" BorderThickness="2" Height="2"/>
+                    <Label Height="20" FontSize="9" Content="F1: 100,000đ" />
+                    <Label Height="20" FontSize="9" Content="F2: 200,000đ" />
+                    <Label Height="20" FontSize="9" Content="F3: 300,000đ" />
+                    <Label Height="20" FontSize="9" Content="F4: 400,000đ" />
+                    <Label Height="20" FontSize="9" Content="F5: 500,000đ" />
+                    <Label Height="20" FontSize="9" Content="F6: 600,000đ" />
+                    <Label Height="20" FontSize="9" Content="F7: 700,000đ" />
+                    <Label Height="20" FontSize="9" Content="F8: 800,000đ" />
+                    <Label Height="20" FontSize="9" Content="F9: 900,000đ" />
+                    <Label Height="20" FontSize="9" Content="`~: 1,000,000đ" />
                   </StackPanel>
                 </Border>
               </Grid>
@@ -70,7 +82,7 @@
                 <Border Padding="10" BorderBrush="Black" BorderThickness="2 0 0 0">
                   <StackPanel Orientation="Vertical">
                     <Label FontWeight="Bold">Số tiền khách đưa:</Label>
-                    <TextBox CharacterCasing="Upper" Height="50" Margin="5" Text="{Binding MoneyModel.MoneyCustomer}" BorderBrush="Black" BorderThickness="1" FontSize="18" Padding="5" TextAlignment="Right"></TextBox>
+                    <TextBox x:Name="inputMoney" CharacterCasing="Upper" Height="50" Margin="5" Text="{Binding MoneyModel.MoneyCustomer, StringFormat='{}{0:#,#}'}" BorderBrush="Black" BorderThickness="1" FontSize="18" Padding="5" TextAlignment="Right"></TextBox>
                     <Button Margin="0 0 5 0" HorizontalAlignment="Right" Content="Enter" Click="Button_Click_Money_Customer" Background="Green" Height="40" Width="300"></Button>
                     <TextBlock FontWeight="Bold"> <LineBreak/> Số tiền theo mệnh giá:</TextBlock>
                     <Grid>
@@ -161,7 +173,7 @@
               <Label FontWeight="Bold" FontSize="18">Tiền còn lại:</Label>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
-              <TextBlock FontWeight="Bold" FontSize="18" Text="{Binding MoneyModel.MoneyReturnCustomer, StringFormat={}{0}đ}"></TextBlock>
+              <TextBlock FontWeight="Bold" FontSize="18" Text="{Binding MoneyModel.MoneyReturnCustomer, StringFormat='{}{0} VND'}"></TextBlock>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
               <TextBlock>
@@ -170,7 +182,7 @@
               </TextBlock>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
-              <TextBlock FontSize="18" Text="{Binding MoneyModel.MoneyCustomerGive, StringFormat={}{0}đ}"></TextBlock>
+              <TextBlock FontSize="18" Text="{Binding MoneyModel.MoneyCustomerGive, StringFormat='{}{0} VND'}"></TextBlock>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="0">
               <CheckBox FontSize="18" VerticalAlignment="Center" Background="#3a34eb" Unchecked="CheckBox_Unchecked_Customer_Tip" Checked="CheckBox_Checked_Customer_Tip"
@@ -178,7 +190,7 @@
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
               <TextBlock>
-              <TextBox Width="200" Height="30" Text="{Binding MoneyModel.MoneyCustomerTip}"  BorderBrush="Black" TextAlignment="Right" BorderThickness="1 1 1 1" Padding="0 0 5 0" FontSize="18" Margin="0 0 3 0"></TextBox>
+              <TextBox Width="200" Height="30" Text="{Binding MoneyModel.MoneyCustomerTip, StringFormat='{}{0:#,#}'}"  BorderBrush="Black" TextAlignment="Right" BorderThickness="1 1 1 1" Padding="0 0 5 0" FontSize="18" Margin="0 0 3 0"></TextBox>
               <Button Background="Gray" Click="Button_Click">OK</Button>
               </TextBlock>
             </Grid>
@@ -186,7 +198,7 @@
               <Label FontWeight="Bold" FontSize="18">Tiền trả lại cho khách:</Label>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
-              <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding MoneyModel.MoneyReturnCustomer, StringFormat={}{0}đ}"></TextBlock>
+              <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding MoneyModel.MoneyReturnCustomer, StringFormat='{}{0} VND'}"></TextBlock>
             </Grid>
             <Grid Grid.Row="4" Grid.Column="1">
 

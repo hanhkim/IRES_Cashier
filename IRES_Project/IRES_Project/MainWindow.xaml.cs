@@ -27,8 +27,8 @@ namespace IRES_Project
 
             InitializeComponent();
 
-            SoundPlayer sound1 = new SoundPlayer("../../Resources/musics/when.wav");
-            sound1.Play();
+            //SoundPlayer sound1 = new SoundPlayer("../../Resources/musics/when.wav");
+            //sound1.Play();
 
             // listening notify
             ReceiveNotifyRabbitMQ();
@@ -131,27 +131,27 @@ namespace IRES_Project
             return result;
         }
 
-        public void GotoMomopayment(InfoNotifyModel infoNotifyModel)
-        {
-            MoMoPayment momoRequest = new MoMoPayment();
+        //public void GotoMomopayment(InfoNotifyModel infoNotifyModel)
+        //{
+        //    MoMoPayment momoRequest = new MoMoPayment();
 
-            BillViewModel billVM = new BillViewModel(Convert.ToInt32(infoNotifyModel.receiver));
-            string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            int result = momoRequest.GoToMomoPayment(billVM.MoneyDetail.TotalPay, billId);
+        //    BillViewModel billVM = new BillViewModel(Convert.ToInt32(infoNotifyModel.receiver));
+        //    string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+        //    int result = momoRequest.GoToMomoPayment(billVM.MoneyDetail.TotalPay, billId);
 
-            if (result == 1) // thanh toan thanh cong
-            {
-               // GoToPayment("momo", billId);
-            }
-            else if (result == -1) // thanh toan that bai
-            {
-                System.Windows.MessageBox.Show("Thanh toan momo that bai, vui long kiem tra lai");
-            }
-            else if (result == 0) // khong bat browser
-            {
+        //    if (result == 1) // thanh toan thanh cong
+        //    {
+        //       // GoToPayment("momo", billId);
+        //    }
+        //    else if (result == -1) // thanh toan that bai
+        //    {
+        //        System.Windows.MessageBox.Show("Thanh toan momo that bai, vui long kiem tra lai");
+        //    }
+        //    else if (result == 0) // khong bat browser
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 
     public partial class InfoNotifyModel

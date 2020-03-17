@@ -107,16 +107,7 @@
                       <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                         <CheckBox  Name="KM1" Background="Red">
                           <StackPanel Orientation="Horizontal">
-                            <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
-                          </StackPanel>
-                        </CheckBox>
-                      </ListBoxItem>
-                    </Border>
-                    <Border Margin="2" BorderBrush="Black" BorderThickness="2" CornerRadius="8">
-                      <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                        <CheckBox  Name="KM2" Background="Red">
-                          <StackPanel Orientation="Horizontal">
-                            <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
+                            <TextBlock Padding="10" Text="KM1 - GIẢM 35000đ"></TextBlock>
                           </StackPanel>
                         </CheckBox>
                       </ListBoxItem>
@@ -125,7 +116,7 @@
                       <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                         <CheckBox  Name="KM3" Background="Red">
                           <StackPanel Orientation="Horizontal">
-                            <TextBlock Padding="10" Text="Khuyến mãi Món ăn 60%"></TextBlock>
+                            <TextBlock Padding="10" Text="KM2 - GIẢM 50000đ"></TextBlock>
                           </StackPanel>
                         </CheckBox>
                       </ListBoxItem>
@@ -178,7 +169,7 @@
                           </GridView.ColumnHeaderContainerStyle>
                           <GridViewColumn Header="Tên" Width="270" DisplayMemberBinding="{Binding DishName}" >
                           </GridViewColumn>
-                          <GridViewColumn Header="SL" Width="270" DisplayMemberBinding="{Binding DishQuantity}" />
+                          <GridViewColumn Header="Số lượng món" Width="270" DisplayMemberBinding="{Binding DishQuantity}" />
                           <GridViewColumn Header="Đơn Giá (VND)" Width="270" DisplayMemberBinding="{Binding DishCost, StringFormat='{}{0:#,#} VND'}" />
                           <GridViewColumn Header="Thành Tiền (VND)" Width="270" DisplayMemberBinding="{Binding DishTotalCost, StringFormat='{}{0:#,#} VND'}" />
                         </GridView>
@@ -198,52 +189,78 @@
 
             <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1"  Margin="0 1 0 0" Padding="10">
               <Grid >
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="30"></RowDefinition>
-                  <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                  <DockPanel>
-                    <Label FontWeight="Bold" Foreground="Red">Mã giao dịch:</Label>
-                    <Label FontWeight="Bold" Content="{Binding OrderInfo.Code}"></Label>
-                  </DockPanel>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                  </Grid.RowDefinitions>
+                  <Grid Grid.Row="0">
+                    <DockPanel>
+                      <Label FontWeight="Bold" Foreground="Red">Mã giao dịch:</Label>
+                      <Label FontWeight="Bold" Content="{Binding OrderInfo.Code}"></Label>
+                    </DockPanel>
+                  </Grid>
+                  <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="400"></ColumnDefinition>
+                      <ColumnDefinition Width="300"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="40"></RowDefinition>
+                      <RowDefinition Height="40"></RowDefinition>
+                      <RowDefinition Height="40"></RowDefinition>
+                      <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0">
+                      <Label>Tổng thanh toán:</Label>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="1">
+                      <TextBlock Padding="0 7 0 0" Text="{Binding OrderInfo.OrderTotalPrice, StringFormat='{}{0:#,#} VND'}"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                      <Label>Thuế VAT 10%:</Label>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                      <TextBlock Padding="0 7 0 0" Text="{Binding MoneyDetail.MoneyVAT, StringFormat='{}{0:#,#} VND'}"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="0">
+                      <Label>Tiền Típ:</Label>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="1">
+                      <TextBlock Padding="0 7 0 0" Text="{Binding MoneyDetail.Tip, StringFormat='{}{0:#,#} VND'}"/>
+                    </Grid>
+                    <Grid Height="100" Grid.Row="3" Grid.Column="0">
+                      <Label>Tổng tiền phải trả:</Label>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="1">
+                      <TextBlock FontWeight="Bold" Padding="0 7 0 0" Text="{Binding MoneyDetail.TotalPay, StringFormat='{}{0:#,#} VND'}"></TextBlock>
+                    </Grid>
+                  </Grid>
                 </Grid>
-                <Grid Grid.Row="1">
+
+                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2 0 0 0">
+                <Grid Margin="32" >
                   <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400"></ColumnDefinition>
-                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition />
                   </Grid.ColumnDefinitions>
                   <Grid.RowDefinitions>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="40" />
                   </Grid.RowDefinitions>
-                  <Grid Grid.Row="0" Grid.Column="0">
-                    <Label>Tổng thanh toán:</Label>
+                  <Label Grid.Row="0" Grid.Column="0" Content="Mã khuyến mãi:" />
+                  <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox VerticalAlignment="Top" Height="30" Width="150" Name="promotionText"/>
+                      <Button Margin="20 0 0 0" Click="Button_Click_Add_Promotion" Background="#1f29de" Content="Thêm"/>
+                  </StackPanel>
+                  <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="Giảm:"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding MoneyDetail.PromotionMoney, StringFormat='{}{0:#,#} VND'}" />
                   </Grid>
-                  <Grid Grid.Row="0" Grid.Column="1">
-                    <TextBlock Padding="0 7 0 0" Text="{Binding OrderInfo.OrderTotalPrice, StringFormat='{}{0:#,#} VND'}"></TextBlock>
-                  </Grid>
-                  <Grid Grid.Row="1" Grid.Column="0">
-                    <Label>Thuế VAT 10%:</Label>
-                  </Grid>
-                  <Grid Grid.Row="1" Grid.Column="1">
-                    <TextBlock Padding="0 7 0 0" Text="{Binding MoneyDetail.MoneyVAT, StringFormat='{}{0:#,#} VND'}"></TextBlock>
-                  </Grid>
-                  <Grid Grid.Row="2" Grid.Column="0">
-                    <Label>Tiền khuyến mãi:</Label>
-                  </Grid>
-                  <Grid Grid.Row="2" Grid.Column="1">
-                    <TextBlock Padding="0 7 0 0" Text="0 VND" />
-                  </Grid>
-                  <Grid Height="100" Grid.Row="3" Grid.Column="0">
-                    <Label>Tổng tiền phải trả:</Label>
-                  </Grid>
-                  <Grid Grid.Row="3" Grid.Column="1">
-                    <TextBlock FontWeight="Bold" Padding="0 7 0 0" Text="{Binding MoneyDetail.TotalPay, StringFormat='{}{0:#,#} VND'}"></TextBlock>
-                  </Grid>
-                </Grid>
+                </Border>
               </Grid>
             </Border>
             <Border Grid.Row="2" BorderBrush="Black" BorderThickness="2" Padding="10 10 10 0" Margin="0 1 0 0" VerticalAlignment="Bottom" Height="100">
