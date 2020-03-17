@@ -18,7 +18,8 @@ namespace Implements.Cashier.Modules
 
         public bool FinishPayment(Order orderInfo, int user_id, int table_id, MoneyPayModel moneyPay, CustomerModel cus, string type, string billId)
         {
-            if (WriteToBill(orderInfo, user_id, moneyPay, cus, type, billId) && UpdateOrder(orderInfo.Id, user_id) && UpdateBookingTable(orderInfo.Id) && UpdateTableList(table_id))
+            if (WriteToBill(orderInfo, user_id, moneyPay, cus, type, billId) && UpdateOrder(orderInfo.Id, user_id) 
+                && UpdateBookingTable(orderInfo.Id) && UpdateTableList(orderInfo.Id))
             {
                 return true;
             }
@@ -35,9 +36,11 @@ namespace Implements.Cashier.Modules
             return paymentToBD.updateCommand(query);
         }
 
-        public bool UpdateTableList(int table_id)
+        public bool UpdateTableList(int orderId) // này là 1 list nè
         {
-            string query = $"update ires.table_info set table_status='CÒN TRỐNG' where table_id={table_id}";
+            //string query = $"update ires.table_info set table_status='CÒN TRỐNG' where table_id={table_id}";
+            string query = $"UPDATE ires.table_info SET table_status ='CÒN TRỐNG', request_payment=false,payment_type=NULL, tip=NULL, promotion=NULL, table_mes=NULL WHERE table_id " +
+                $"IN(SELECT table_id FROM ires.booking_table WHERE order_id={orderId})"; 
             WorkerToDB paymentToBD = new WorkerToDB();
             return paymentToBD.updateCommand(query);
         }

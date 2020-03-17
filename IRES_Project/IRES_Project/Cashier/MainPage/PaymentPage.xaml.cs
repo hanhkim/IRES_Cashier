@@ -18,7 +18,10 @@ using Model.Cashier;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using IRES_Project.MoMo;
-
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.IO;
+using Service.API;
 
 namespace IRES_Project.Cashier.MainPage
 {
@@ -103,13 +106,18 @@ namespace IRES_Project.Cashier.MainPage
             GoToPayment("cash", billId);
         }
 
-        public void GoToPayment(string type, string billId)
+        public async void GoToPayment(string type, string billId)
         {
             //MoneyPayModel money = paymentVM.MoneyModel;
 
             if (paymentVM.FinishPayment(orderinfo, tableId, cus, paymentVM.MoneyModel, type, billId))
             {
                 System.Windows.Forms.MessageBox.Show("Thanh toan thành công");
+                // send api to backend
+                ApiBackendService apiBackend = new ApiBackendService();
+                await apiBackend.SendApiToBackend(orderinfo.Id);
+
+                // return table page
                 IRES_Globals.Cashier.MemoryAction.Instance = null;
                 ViewModel.Cashier.Common.BreadCrumbViewModel.Instance.RemovePos("Bàn");
                 Switcher.Switch(new TablePage());
@@ -120,90 +128,26 @@ namespace IRES_Project.Cashier.MainPage
             }
         }
 
+
         string endpointApp = "";
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private void Button_Click_MoMoPayment(object sender, RoutedEventArgs e)
         {
-            // Request params need to request to MoMo system
-            //string endpoint = endpointApp != "" ? endpointApp : "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-            //string partnerCode = "MOMO5RGX20191128";
-            //string accessKey = "M8brj9K6E22vXoDB";
-            //string secretKey = "nqQiVSgDMy809JoPF6OzP5OdBUB550Y4";
-            //string orderInfo = "test";
-            //string returnUrl = "https://momo.vn/";
-            //string notifyUrl = "https://momo.vn/notify";
-
-            string endpoint = endpointApp != "" ? endpointApp : "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-            string partnerCode = "MOMOCHGB20200212";
-            string accessKey = "cPdPFP0OLjDRtz1P";
-            string secretKey = "WdxZhXuftD0GIZB64kn7LCj8yIqbnJAd";
-            string orderInfo = "test_hanh";
-            string returnUrl = "https://momo.vn/";
-            string notifyUrl = "https://momo.vn/notify";
-
-            string amount = "1000";
+            MoMoPayment momopayment = new MoMoPayment();
             string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            string requestId = Guid.NewGuid().ToString();
-            string extraData = "";
-
-            // Before sign HMAC SHA256 signature
-            string rawHash = "partnerCode=" +
-                partnerCode + "&accessKey=" +
-                accessKey + "&requestId=" +
-                requestId + "&amount=" +
-                amount + "&orderId=" +
-                billId + "&orderInfo=" +
-                orderInfo + "&returnUrl=" +
-                returnUrl + "&notifyUrl=" +
-                notifyUrl + "&extraData=" + extraData;
-
-            MoMoSecurity crypto = new MoMoSecurity();
-
-            // sign signature SHA256
-            string signature = crypto.signSHA256(rawHash, secretKey);
-          //  System.Windows.Forms.MessageBox.Show(signature);
-
-            // Build body json request
-            JObject message = new JObject
+            int result = momopayment.GoToMomoPayment(paymentVM.MoneyModel.TotalPay, billId);
+            if (result == 1) // thanh toan thanh cong
             {
-                { "partnerCode", partnerCode },
-                { "accessKey", accessKey },
-                { "requestId", requestId },
-                { "amount", amount },
-                { "orderId", billId },
-                { "orderInfo", orderInfo },
-                { "returnUrl", returnUrl },
-                { "notifyUrl", notifyUrl },
-                { "extraData", extraData },
-                { "requestType", "captureMoMoWallet" },
-                { "signature", signature }
-
-            };
-
-            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
-
-            JObject jmessage = JObject.Parse(responseFromMomo);
-            log.Debug("Return from MoMo: " + jmessage.ToString());
-            DialogResult result = System.Windows.Forms.MessageBox.Show(responseFromMomo, "Open in browser", MessageBoxButtons.OKCancel);
-            if (result == DialogResult.OK)
+                GoToPayment("momo", billId);
+            } 
+            else if (result == -1) // thanh toan that bai
             {
-                //yes...
-                System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
-                DialogResult result1 = System.Windows.Forms.MessageBox.Show("Thanh toán thành công? ", "Kết quả Thanh toán", MessageBoxButtons.OKCancel);
-
-                if (result1 == DialogResult.OK)
-                {
-                    // thanh toán thành công
-                    GoToPayment("momo", billId);
-                } else if ( result1 == DialogResult.Cancel)
-                {
-                    // thanh toán thất bại
-                }
+                System.Windows.MessageBox.Show("Thanh toan momo that bai, vui long kiem tra lai");
             }
-            else if (result == DialogResult.Cancel)
+            else if (result == 0) // khong bat browser
             {
-                //no...
+
             }
         }
     }

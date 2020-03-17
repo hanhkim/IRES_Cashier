@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Cashier\InfoRequestPaymentModel.cs" />
     <Compile Include="Cashier\MoneyDetailMustPayModel.cs" />
     <Compile Include="Cashier\PromotionModel.cs" />
     <Compile Include="GlobalConstants\GlobalInformations.cs" />

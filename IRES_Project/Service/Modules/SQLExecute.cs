@@ -45,8 +45,9 @@ namespace Service.Modules
                 dr.Close();
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show("Update that bai", ex.Message);
                 return false;
             }
 
@@ -70,7 +71,7 @@ namespace Service.Modules
             }
             catch(NpgsqlException e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Insert that bai", e.Message);
                 return false;
             }
         

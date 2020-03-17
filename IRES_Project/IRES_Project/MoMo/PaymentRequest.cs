@@ -41,7 +41,6 @@ namespace IRES_Project.MoMo
 
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
-
                     string temp = null;
                     while ((temp = reader.ReadLine()) != null)
                     {
@@ -49,10 +48,7 @@ namespace IRES_Project.MoMo
                     }
                 }
 
-
-                //todo parse it
                 return jsonresponse;
-                //return new MomoResponse(mtid, jsonresponse);
 
             }
             catch (WebException e)
