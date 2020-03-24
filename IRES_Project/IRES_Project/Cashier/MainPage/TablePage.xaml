@@ -111,16 +111,7 @@
                     <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                       <CheckBox  Name="KM1" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
-                        </StackPanel>
-                      </CheckBox>
-                    </ListBoxItem>
-                  </Border>
-                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" CornerRadius="8">
-                    <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <CheckBox  Name="KM2" Background="Red">
-                        <StackPanel Orientation="Horizontal">
-                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
+                          <TextBlock Padding="10" Text="KM1 - GIẢM 35000đ"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
@@ -129,7 +120,7 @@
                     <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                       <CheckBox  Name="KM3" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 60%"></TextBlock>
+                          <TextBlock Padding="10" Text="KM2 - GIẢM 50000đ"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
@@ -147,61 +138,41 @@
               <Border Background="Red" Grid.Row="0" Height="50" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0 0 0 2">
                 <DockPanel Background="#144fe3">
                   <materialDesign:PackIcon Kind="Gift" Height="20" Width="20" Foreground="White" Margin="5 0 0 2" VerticalAlignment="Center"/>
-                  <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="White">Thông báo</Label>
+                  <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="AliceBlue">Thông báo</Label>
                 </DockPanel>
               </Border>
               <Grid Grid.Row="1" Background="#eeeeee">
                 <ListBox HorizontalAlignment="Center" Margin="0" Padding="0" VerticalAlignment="Top" ItemsSource="{Binding ListInfoNotify}" >
                   <ListBox.ItemTemplate>
                     <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
-                      <ListBoxItem Height="50" Padding="0" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                        <Grid>
-                          <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="1*"/>
-                          </Grid.RowDefinitions>
-                          <TextBlock Grid.Row="0" Text="Thanh toan Momo" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
-                          <DockPanel Grid.Row="1" Width="260">
-                              <TextBlock TextTrimming="CharacterEllipsis" FontSize="10" DockPanel.Dock="Left" VerticalAlignment="Center" Text="{Binding Description}" HorizontalAlignment="Left"></TextBlock>
-                            <Button CommandParameter="{Binding Id}" Click="Button_Click_Payment" DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="25" BorderBrush="Red" Padding="0" Width="80" Background="#d63131"/>
-                          </DockPanel>
-                        </Grid>
-                      </ListBoxItem>
-                    </Border>
+                      <Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
+                        <ListBoxItem Height="70" Padding="0" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                          <Grid>
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="20"/>
+                              <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Thanh toán" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
+                            <DockPanel Grid.Row="1" Width="260">
+                              <Grid>
+                                <!--<Grid.ColumnDefinitions>
+                                  <ColumnDefinition/>
+                                  --><!--<ColumnDefinition Width="auto"/>--><!--
+                                </Grid.ColumnDefinitions>-->
+                                <Grid.RowDefinitions>
+                                  <RowDefinition />
+                                  <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextTrimming="CharacterEllipsis" FontSize="10" VerticalAlignment="Center" Text="{Binding Description}" HorizontalAlignment="Left"></TextBlock>
+                                <Button HorizontalAlignment="Right" Grid.Row="1" CommandParameter="{Binding Id}" Click="Button_Click_Payment" DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="25"
+                                  BorderBrush="Red" HorizontalContentAlignment="Center" Padding="0" Width="100" Background="#d63131"/>
+                              </Grid>
+                            </DockPanel>
+                          </Grid>
+                        </ListBoxItem>
+                      </Border>
                     </DataTemplate>
                   </ListBox.ItemTemplate>
-                 
-                  <!--<Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
-                    <ListBoxItem Height="50" Padding="2" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <Grid>
-                        <Grid.RowDefinitions>
-                          <RowDefinition Height="20"/>
-                          <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="Thanh toan Momo" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
-                        <DockPanel Grid.Row="1" Width="240">
-                          <TextBlock FontSize="10" DockPanel.Dock="Left" VerticalAlignment="Center" Text="Bàn 1 tầng 1" HorizontalAlignment="Left"></TextBlock>
-                          <Button DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="30" Width="100" Background="#d63131" HorizontalAlignment="Right" />
-                        </DockPanel>
-                      </Grid>
-                    </ListBoxItem>
-                  </Border>
-                  <Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
-                    <ListBoxItem Height="50" Padding="2" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <Grid>
-                        <Grid.RowDefinitions>
-                          <RowDefinition Height="20"/>
-                          <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="Thanh toan tiền mặt" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
-                        <DockPanel Grid.Row="1" Width="240">
-                          <TextBlock FontSize="10" DockPanel.Dock="Left" VerticalAlignment="Center" Text="Bàn 1 tầng 1" HorizontalAlignment="Left"></TextBlock>
-                          <Button DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="30" Width="100" Background="#d63131" HorizontalAlignment="Right" />
-                        </DockPanel>
-                      </Grid>
-                    </ListBoxItem>
-                  </Border>-->
                 </ListBox>
               </Grid>
             </Grid>

@@ -33,5 +33,9 @@ namespace Model.Cashier
         public bool StatusShow { get; set; }
 
         public string TableName { get; set; }
+
+        public float TipMoney { get; set; }
+
+        public string Promotion { get; set; }
     }
 }

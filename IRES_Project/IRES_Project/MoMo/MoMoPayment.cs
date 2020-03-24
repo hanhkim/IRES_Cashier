@@ -30,8 +30,8 @@ namespace IRES_Project.MoMo
                 string returnUrl = "https://momo.vn/";
                 string notifyUrl = "https://momo.vn/notify";
 
-                string amount = totalpay.ToString();
-                //string amount = "50000";
+                //string amount = totalpay.ToString();
+                string amount = "535000";
                 //string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
                 string requestId = Guid.NewGuid().ToString();
                 string extraData = "";
@@ -71,29 +71,19 @@ namespace IRES_Project.MoMo
 
                 JObject jmessage = JObject.Parse(responseFromMomo);
 
-               // DialogResult result = System.Windows.Forms.MessageBox.Show(responseFromMomo, "Open in browser", MessageBoxButtons.OKCancel);
-                //if (result == DialogResult.OK)
-                //{
-                //    //yes...
-                    System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
-                    DialogResult result1 = System.Windows.Forms.MessageBox.Show("Thanh toán thành công? ", "Kết quả Thanh toán", MessageBoxButtons.OKCancel);
+                System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
+                DialogResult result1 = System.Windows.Forms.MessageBox.Show("Thanh toán thành công? ", "Kết quả Thanh toán", MessageBoxButtons.OKCancel);
 
-                    if (result1 == DialogResult.OK)
-                    {
-                        // thanh toán thành công
-                        return 1;
-                    }
-                    else if (result1 == DialogResult.Cancel)
-                    {
-                        // thanh toán thất bại
-                        return -1;
-                    }
-                //}
-                //else if (result == DialogResult.Cancel)
-                //{
-                    //no...  action
-                //    return 0;
-                //}
+                if (result1 == DialogResult.OK)
+                {
+                    // thanh toán thành công
+                    return 1;
+                }
+                else if (result1 == DialogResult.Cancel)
+                {
+                    // thanh toán thất bại
+                    return -1;
+                }
 
                 return 1;
             }

@@ -90,7 +90,7 @@ namespace IRES_Project.Cashier.MainPage
         {
             MoMoPayment momoRequest = new MoMoPayment();
 
-            BillViewModel billVM = new BillViewModel(idTable);
+            BillViewModel billVM = new BillViewModel(idTable, 0, 0);
             string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
             int result = momoRequest.GoToMomoPayment(billVM.MoneyDetail.TotalPay, billId);
 

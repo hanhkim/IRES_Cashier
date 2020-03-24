@@ -36,7 +36,9 @@ namespace Implements.Cashier.Modules
                         Code = dtFloor.Rows[i]["table_code"].ToString(),
                         Id = Convert.ToInt32(dtFloor.Rows[i]["table_id"]),
                         StatusShow = dtFloor.Rows[i]["table_status"].ToString() == "CÒN TRỐNG" ? false : true,
-                        TableName = "Bàn " + dtFloor.Rows[i]["table_number"].ToString()
+                        TableName = "Bàn " + dtFloor.Rows[i]["table_number"].ToString(),
+                        TipMoney = Convert.ToInt32(dtFloor.Rows[i]["tip"].ToString() != "" ? dtFloor.Rows[i]["tip"] : 0 ),
+                        Promotion = dtFloor.Rows[i]["promotion"].ToString() != "" ? dtFloor.Rows[i]["promotion"].ToString() : null
                     };
 
                     if (table.StatusShow == true)
@@ -82,6 +84,14 @@ namespace Implements.Cashier.Modules
                         Description = listTablesNotifies.Rows[i]["table_mes"].ToString()
                     };
 
+                    if(info.Type == "thẻ")
+                    {
+                        info.Description = "Momo -" + info.Description;
+                    }
+                    else if(info.Type == "tiền mặt")
+                    {
+                        info.Description = "Tiền mặt -" + info.Description;
+                    }
                    
                     result.Add(info);
                 }

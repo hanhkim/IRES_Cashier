@@ -15,8 +15,9 @@ namespace ViewModel.Cashier.Modules
 {
     public class BillViewModel: BaseViewModel
     {
-        public BillViewModel(int tableId)
+        public BillViewModel(int tableId, float tip, float promotion)
         {
+           // float tip = 10000;
             // Get data to Bill Page
             var order_id = getOrderId(tableId);
             CustomerInfo = getCustomerInfo(order_id);
@@ -25,8 +26,8 @@ namespace ViewModel.Cashier.Modules
 
             OrderInfo.OrderTotalPrice = CaculatorTotalPrice();
 
-            MoneyDetail = new MoneyDetailMustPayModel();
-            MoneyDetail.CaculateMoneyDetail(InfoContant.VAT, OrderInfo.OrderTotalPrice);
+            MoneyDetail = new MoneyDetailMustPayModel(OrderInfo.OrderTotalPrice, InfoContant.VAT, tip, promotion);
+            //MoneyDetail.CaculateMoneyDetail(InfoContant.VAT, OrderInfo.OrderTotalPrice, tip);
         }
 
         private MoneyDetailMustPayModel _MoneyDetail;
