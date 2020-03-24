@@ -84,6 +84,14 @@ namespace Implements.Cashier.Modules
                         Description = listTablesNotifies.Rows[i]["table_mes"].ToString()
                     };
 
+                    if(info.Type == "thẻ")
+                    {
+                        info.Description = "Momo -" + info.Description;
+                    }
+                    else if(info.Type == "tiền mặt")
+                    {
+                        info.Description = "Tiền mặt -" + info.Description;
+                    }
                    
                     result.Add(info);
                 }

@@ -82,7 +82,7 @@ namespace IRES_Project
 
                         if (infoNotify.typeMessage != null && infoNotify.descriptionMessage != null && infoNotify.descriptionMessage.Contains("Thanh toán")) // them hinh thuc thanh toan o day
                         {
-                            MessageBox.Show(infoNotify.descriptionMessage);
+                           // MessageBox.Show(infoNotify.descriptionMessage);
                            //GotoMomopayment(infoNotify);
                         }
                         else

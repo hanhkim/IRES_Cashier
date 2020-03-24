@@ -111,7 +111,7 @@
                     <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                       <CheckBox  Name="KM1" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
+                          <TextBlock Padding="10" Text="KM1 - GIẢM 35000đ"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
@@ -120,7 +120,7 @@
                     <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                       <CheckBox  Name="KM3" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 60%"></TextBlock>
+                          <TextBlock Padding="10" Text="KM2 - GIẢM 50000đ"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
@@ -146,21 +146,25 @@
                   <ListBox.ItemTemplate>
                     <DataTemplate>
                       <Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
-                        <ListBoxItem Height="50" Padding="0" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                        <ListBoxItem Height="70" Padding="0" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                           <Grid>
                             <Grid.RowDefinitions>
                               <RowDefinition Height="20"/>
                               <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="Thanh toán Momo" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
+                            <TextBlock Grid.Row="0" Text="Thanh toán" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
                             <DockPanel Grid.Row="1" Width="260">
                               <Grid>
-                                <Grid.ColumnDefinitions>
+                                <!--<Grid.ColumnDefinitions>
                                   <ColumnDefinition/>
-                                  <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" TextTrimming="CharacterEllipsis" FontSize="10" VerticalAlignment="Center" Text="{Binding Description}" HorizontalAlignment="Left"></TextBlock>
-                                <Button Grid.Column="1" CommandParameter="{Binding Id}" Click="Button_Click_Payment" DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="25"
+                                  --><!--<ColumnDefinition Width="auto"/>--><!--
+                                </Grid.ColumnDefinitions>-->
+                                <Grid.RowDefinitions>
+                                  <RowDefinition />
+                                  <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextTrimming="CharacterEllipsis" FontSize="10" VerticalAlignment="Center" Text="{Binding Description}" HorizontalAlignment="Left"></TextBlock>
+                                <Button HorizontalAlignment="Right" Grid.Row="1" CommandParameter="{Binding Id}" Click="Button_Click_Payment" DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="25"
                                   BorderBrush="Red" HorizontalContentAlignment="Center" Padding="0" Width="100" Background="#d63131"/>
                               </Grid>
                             </DockPanel>

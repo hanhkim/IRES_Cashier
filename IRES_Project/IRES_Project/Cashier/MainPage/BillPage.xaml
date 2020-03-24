@@ -105,9 +105,9 @@
                   <ListBox Margin="7.2,5,12.8,0" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1">
                     <Border Margin="2" BorderBrush="Black" BorderThickness="2" CornerRadius="8">
                       <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                        <CheckBox  Name="KM1" Background="Red">
+                        <CheckBox Name="KM1" Background="Red">
                           <StackPanel Orientation="Horizontal">
-                            <TextBlock Padding="10" Text="KM1 - GIẢM 35000đ"></TextBlock>
+                            <TextBlock Padding="10" Text="KM001 - GIẢM 35000đ"></TextBlock>
                           </StackPanel>
                         </CheckBox>
                       </ListBoxItem>
@@ -116,7 +116,7 @@
                       <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                         <CheckBox  Name="KM3" Background="Red">
                           <StackPanel Orientation="Horizontal">
-                            <TextBlock Padding="10" Text="KM2 - GIẢM 50000đ"></TextBlock>
+                            <TextBlock Padding="10" Text="KM002 - GIẢM 50000đ"></TextBlock>
                           </StackPanel>
                         </CheckBox>
                       </ListBoxItem>

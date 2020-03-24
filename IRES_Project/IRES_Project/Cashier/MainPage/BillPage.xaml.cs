@@ -29,12 +29,13 @@ namespace IRES_Project.Cashier.MainPage
 
         public void LoadData(TableModel selectedTableInput)
         {
+            tableSelected = selectedTableInput;
             if (selectedTableInput.Promotion != null)
             {
                 PromotionHard(selectedTableInput.Promotion);
             }
             if (selectedTableInput != null) {
-                tableSelected = selectedTableInput;
+                //tableSelected = selectedTableInput;
 
                 billVM = new BillViewModel(tableSelected.Id, tableSelected.TipMoney, promotionMoney);
                 txtTableCode.Content = tableSelected.TableName;
@@ -75,13 +76,21 @@ namespace IRES_Project.Cashier.MainPage
 
         private void PromotionHard(string promotion)
         {
-            if (promotion == "KM1")
+            if (promotion == "KM001")
             {
                 promotionMoney = 35000;
+
+                if(billVM == null)
+                {
+                    billVM = new BillViewModel(tableSelected.Id, tableSelected.TipMoney, promotionMoney);
+                }
+
+                billVM.MoneyDetail.PromotionMoney = 35000;
             }
-            else if (promotion == "KM2")
+            else if (promotion == "KM002")
             {
                 promotionMoney = 50000;
+                billVM.MoneyDetail.PromotionMoney = 50000;
             }
             else
             {
