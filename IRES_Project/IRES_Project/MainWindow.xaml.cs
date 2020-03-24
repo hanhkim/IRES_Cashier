@@ -8,6 +8,12 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using ViewModel.Cashier.Common;
 using IRES_Project.Views;
+using System.Media;
+using WMPLib;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using IRES_Project.MoMo;
+using ViewModel.Cashier.Modules;
 
 namespace IRES_Project
 {
@@ -21,9 +27,8 @@ namespace IRES_Project
 
             InitializeComponent();
 
-            //Login to enter main page
-            //Login loginWindow = new Login();
-            //loginWindow.ShowDialog();
+            SoundPlayer sound1 = new SoundPlayer("../../Resources/musics/when.wav");
+            sound1.Play();
 
             // listening notify
             ReceiveNotifyRabbitMQ();
@@ -51,6 +56,10 @@ namespace IRES_Project
                 var channel = conn.CreateModel();
 
                 var consumer = new EventingBasicConsumer(channel);
+                //exchange test
+                //var queueName = channel.QueueDeclare("khanhs").QueueName;
+                //channel.QueueBind(queue: queueName, exchange: "directExchange", routingKey: "COOK1");
+
 
                 consumer.Received += (model, ea) =>
                 {
@@ -59,7 +68,28 @@ namespace IRES_Project
 
                     if (message != null)
                     {
-                        MessageBox.Show("new notify");
+                        try
+                        {
+                            SoundPlayer sound = new SoundPlayer("../../Resources/musics/when.wav");
+                            sound.Play();
+                        }
+                        catch (Exception e)
+                        {
+                           // MessageBox.Show("beep sound error!!");
+                        }
+
+                        InfoNotifyModel infoNotify = getInfoNotify(message);
+
+                        if (infoNotify.typeMessage != null && infoNotify.descriptionMessage != null && infoNotify.descriptionMessage.Contains("Thanh toán")) // them hinh thuc thanh toan o day
+                        {
+                            MessageBox.Show(infoNotify.descriptionMessage);
+                           //GotoMomopayment(infoNotify);
+                        }
+                        else
+                        {
+                            MessageBox.Show(infoNotify.descriptionMessage);
+                        }
+
                         if (BreadCrumbViewModel.Instance.BreadCrumb.Last() == "Bàn")
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate {
@@ -72,12 +102,66 @@ namespace IRES_Project
                                      autoAck: true,
                                      consumer: consumer);
 
+
+
+                //channel.BasicConsume(queue: queueName,
+                //                     autoAck: true,
+                //                     consumer: consumer);
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("Loi roai");
+                MessageBox.Show(e.ToString(), "Lỗi kết nối Rabbitmq");
             }
         }
 
+        public InfoNotifyModel getInfoNotify(string message)
+        {
+            InfoNotifyModel result = new InfoNotifyModel();
+
+            JObject jMessage = JObject.Parse(message);
+            string textMessage = jMessage.SelectToken("text").ToString();
+            JObject jDataMessage = JObject.Parse(textMessage);
+            string Data = jDataMessage.SelectToken("data").ToString();
+
+            JObject jData = JObject.Parse(Data);
+            result.receiver = jData.SelectToken("receiver").ToString();
+            result.descriptionMessage = jData.SelectToken("description").ToString();
+            result.typeMessage = jData.SelectToken("type").ToString();
+
+            return result;
+        }
+
+        public void GotoMomopayment(InfoNotifyModel infoNotifyModel)
+        {
+            MoMoPayment momoRequest = new MoMoPayment();
+
+            BillViewModel billVM = new BillViewModel(Convert.ToInt32(infoNotifyModel.receiver));
+            string billId = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            int result = momoRequest.GoToMomoPayment(billVM.MoneyDetail.TotalPay, billId);
+
+            if (result == 1) // thanh toan thanh cong
+            {
+               // GoToPayment("momo", billId);
+            }
+            else if (result == -1) // thanh toan that bai
+            {
+                System.Windows.MessageBox.Show("Thanh toan momo that bai, vui long kiem tra lai");
+            }
+            else if (result == 0) // khong bat browser
+            {
+
+            }
+        }
+    }
+
+    public partial class InfoNotifyModel
+    {
+        public InfoNotifyModel()
+        {
+
+        }
+        public string receiver;
+        public string descriptionMessage;
+        public string typeMessage;
     }
 }

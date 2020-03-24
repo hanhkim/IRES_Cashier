@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Implements.Workers;
 using Model.Cashier;
 
@@ -107,28 +108,35 @@ namespace Implements.Cashier.Modules
 
             var result = new List<OrderDetail>();
 
-            for (int i = 0; i < dtOrderDetailInfo.Rows.Count; i++)
+            try
             {
-                int dishId = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["dish_id"]);
-                var checkDishId = result.FirstOrDefault(x => x.DishId == dishId);
-
-                var queryGetDish = $"Select * from ires.dish where dish_id={dishId}";
-                var resultDish = new Dish();
-                // get cost of dish
-                DataTable dtDishInfo = billToDB.getRecordsCommand(queryGetDish); // get cost
-
-                if (checkDishId == null)
+                for (int i = 0; i < dtOrderDetailInfo.Rows.Count; i++)
                 {
-                    result.Add(new OrderDetail()
+                    int dishId = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["dish_id"]);
+                    var checkDishId = result.FirstOrDefault(x => x.DishId == dishId);
+
+                    var queryGetDish = $"Select * from ires.dish where dish_id={dishId}";
+                    var resultDish = new Dish();
+                    // get cost of dish
+                    DataTable dtDishInfo = billToDB.getRecordsCommand(queryGetDish); // get cost
+
+                    if (checkDishId == null)
                     {
-                        DishQuantity = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["dish_quantity"]),
-                        Id = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["order_detail_id"]),
-                        DishId = dishId,
-                        DishCost = Convert.ToInt32(dtDishInfo.Rows[0]["dish_cost"]),
-                        DishName = dtDishInfo.Rows[0]["dish_name"].ToString(),
-                        DishTotalCost = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["dish_quantity"]) * Convert.ToInt32(dtDishInfo.Rows[0]["dish_cost"])
-                    });
+                        result.Add(new OrderDetail()
+                        {
+                            DishQuantity = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["dish_quantity"]),
+                            Id = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["order_detail_id"]),
+                            DishId = dishId,
+                            DishCost = Convert.ToInt32(dtDishInfo.Rows[0]["dish_cost"]),
+                            DishName = dtDishInfo.Rows[0]["dish_name"].ToString(),
+                            DishTotalCost = Convert.ToInt32(dtOrderDetailInfo.Rows[i]["dish_quantity"]) * Convert.ToInt32(dtDishInfo.Rows[0]["dish_cost"])
+                        });
+                    }
                 }
+            } 
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
             return result;

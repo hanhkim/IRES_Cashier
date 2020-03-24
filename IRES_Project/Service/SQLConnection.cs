@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IRES_Globals.GlobalClass;
 using Npgsql;
+using System.Data;
 
 namespace Service
 {
@@ -30,6 +31,10 @@ namespace Service
             set
             {
                 _Instance = value;
+                if (_Instance.Connection.State == ConnectionState.Closed)
+                {
+                    _Instance.OpenfConnection();
+                }
             }
         }
 
@@ -38,13 +43,20 @@ namespace Service
         }
         public void ConnectDB()
         {
-            Connection = new NpgsqlConnection(
-                "Server=" + ConnectionInfo.SERVER + ";" +
-                "Port=" + ConnectionInfo.PORT + ";" +
-                "User Id=" + ConnectionInfo.USER + ";" +
-                "Password=" + ConnectionInfo.PASSWORD + ";" +
-                "Database=" + ConnectionInfo.DATABASE + ";"
-            );
+            try {
+                Connection = new NpgsqlConnection(
+                    "Server=" + ConnectionInfo.SERVER + ";" +
+                    "Port=" + ConnectionInfo.PORT + ";" +
+                    "User Id=" + ConnectionInfo.USER + ";" +
+                    "Password=" + ConnectionInfo.PASSWORD + ";" +
+                    "Database=" + ConnectionInfo.DATABASE + ";"
+                );
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Tao ket noi voi connection loi");
+            } 
+            
         }
 
         public void OpenfConnection()
@@ -55,7 +67,7 @@ namespace Service
             }
             catch (NpgsqlException ex)
             {
-                ShowError(ex);
+                MessageBox.Show(ex.Message, "Tao ket noi db loi");
             }
         }
 
@@ -67,14 +79,8 @@ namespace Service
             }
             catch (NpgsqlException ex)
             {
-                ShowError(ex);
+                MessageBox.Show(ex.Message, "Đóng kết nối lỗi");
             }
         }
-
-        private void ShowError(NpgsqlException ex)
-        {
-            MessageBox.Show(ex.Message, "Error");
-        }
-
     }
 }

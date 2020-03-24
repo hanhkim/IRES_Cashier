@@ -48,11 +48,21 @@
               <Grid Grid.Column="0">
                 <Border Padding="10">
                   <StackPanel Orientation="Vertical">
-                    <Button Height="50" Margin="0 5" Background="Green">TIỀN MẶT</Button>
+                    <Button Height="50" Margin="0 5" Background="Green">
+                      <StackPanel Orientation="Horizontal">
+                        <Image Height="30" Width="30" Source="../../Resources/Images/cash.png"/>
+                        <Label VerticalAlignment="Center" Margin="0" Foreground="White" FontSize="14" Content="TIỀN MẶT" ></Label>
+                      </StackPanel>
+                    </Button>
                     <Button Height="50" Margin="0 5" Background="Brown">ATM</Button>
                     <Button Height="50" Margin="0 5" Background="Brown">VISA</Button>
                     <Button Height="50" Margin="0 5" Background="Brown">MASTER CARD</Button>
-                    <Button Height="50" Margin="0 5" Background="Orange" Click="Button_Click_MoMoPayment">VÍ ĐIỆN TỬ</Button>
+                    <Button Height="50" Margin="0 5" Background="#ae2070" Click="Button_Click_MoMoPayment">
+                      <StackPanel Orientation="Horizontal">
+                        <Image Height="30" Width="30" Source="../../Resources/Images/logo-momo.png"/>
+                        <Label VerticalAlignment="Center" Margin="0" Foreground="White" FontSize="14" Content="MOMO" ></Label>
+                      </StackPanel>
+                    </Button>
                   </StackPanel>
                 </Border>
               </Grid>
@@ -60,8 +70,8 @@
                 <Border Padding="10" BorderBrush="Black" BorderThickness="2 0 0 0">
                   <StackPanel Orientation="Vertical">
                     <Label FontWeight="Bold">Số tiền khách đưa:</Label>
-                    <TextBox Height="50" Margin="5" Text="{Binding MoneyModel.MoneyCustomer}" BorderBrush="Black" BorderThickness="1" FontSize="18" Padding="5" TextAlignment="Right"></TextBox>
-                    <Button Content="Enter" Click="Button_Click_Money_Customer" Background="Green" Height="40" Width="300"></Button>
+                    <TextBox CharacterCasing="Upper" Height="50" Margin="5" Text="{Binding MoneyModel.MoneyCustomer}" BorderBrush="Black" BorderThickness="1" FontSize="18" Padding="5" TextAlignment="Right"></TextBox>
+                    <Button Margin="0 0 5 0" HorizontalAlignment="Right" Content="Enter" Click="Button_Click_Money_Customer" Background="Green" Height="40" Width="300"></Button>
                     <TextBlock FontWeight="Bold"> <LineBreak/> Số tiền theo mệnh giá:</TextBlock>
                     <Grid>
                       <Grid.RowDefinitions>
@@ -120,7 +130,7 @@
                   <Label FontFamily="Roboto" FontWeight="Bold">Tiền mặt</Label>
                 </StackPanel>
                 <StackPanel Margin="10 0" HorizontalAlignment="Right" VerticalAlignment="Center" DockPanel.Dock="Right">
-                  <Label FontFamily="Roboto" FontWeight="Bold" Content="{Binding MoneyModel.TotalPay}"></Label>
+                  <TextBlock FontFamily="Roboto" VerticalAlignment="Center" FontWeight="Bold" Text="{Binding MoneyModel.TotalPay, StringFormat='{}{0:#,#} VND'}"></TextBlock>
                 </StackPanel>
               </DockPanel>
             </StackPanel>
@@ -151,19 +161,19 @@
               <Label FontWeight="Bold" FontSize="18">Tiền còn lại:</Label>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
-              <Label FontWeight="Bold" FontSize="18" Content="{Binding MoneyModel.MoneyReturnCustomer}"></Label>
+              <TextBlock FontWeight="Bold" FontSize="18" Text="{Binding MoneyModel.MoneyReturnCustomer, StringFormat={}{0}đ}"></TextBlock>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
               <TextBlock>
-                <CheckBox FontSize="18" VerticalAlignment="Center" Background="Beige"
+                <CheckBox FontSize="18" VerticalAlignment="Center" Background="#3a34eb"
                   IsChecked="{Binding MoneyModel.IsSelectedTipAll}" Unchecked="CheckBox_Unchecked_Not_Get_Redundant_Money" Checked="CheckBox_Checked_Not_Get_Redundant_Money"> Không lấy tiền thừa </CheckBox>
               </TextBlock>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
-              <Label FontSize="18" Content="{Binding MoneyModel.MoneyCustomerGive}"></Label>
+              <TextBlock FontSize="18" Text="{Binding MoneyModel.MoneyCustomerGive, StringFormat={}{0}đ}"></TextBlock>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="0">
-              <CheckBox FontSize="18" VerticalAlignment="Center" Background="Beige" Unchecked="CheckBox_Unchecked_Customer_Tip" Checked="CheckBox_Checked_Customer_Tip"
+              <CheckBox FontSize="18" VerticalAlignment="Center" Background="#3a34eb" Unchecked="CheckBox_Unchecked_Customer_Tip" Checked="CheckBox_Checked_Customer_Tip"
                   IsChecked="{Binding MoneyModel.IsSelectedTip}" >Tiền típ khách hàng:</CheckBox>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
@@ -176,7 +186,7 @@
               <Label FontWeight="Bold" FontSize="18">Tiền trả lại cho khách:</Label>
             </Grid>
             <Grid Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
-              <Label FontSize="18" FontWeight="Bold" Content="{Binding MoneyModel.MoneyReturnCustomer}"></Label>
+              <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding MoneyModel.MoneyReturnCustomer, StringFormat={}{0}đ}"></TextBlock>
             </Grid>
             <Grid Grid.Row="4" Grid.Column="1">
 

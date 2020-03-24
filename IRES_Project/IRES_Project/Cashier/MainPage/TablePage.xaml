@@ -88,8 +88,12 @@
       </Grid.ColumnDefinitions>
       <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
         <Grid>
-          <Border BorderBrush="Black" BorderThickness="2" Margin="5" Background="#FF3580BF">
-            <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+          <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" Margin="5" Background="#FF3580BF">
+            <Grid Background="Red">
               <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="1*" />
@@ -103,33 +107,101 @@
               </Border>
               <Grid Grid.Row="1" Background="#eeeeee">
                 <ListBox Margin="5,5,5,5" Name="listBox1" HorizontalAlignment="Center" VerticalAlignment="Top">
-                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
-                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <CheckBox Name="MangoShakeCheckBox">
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" CornerRadius="8">
+                    <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox  Name="KM1" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Text="Mango Shake"></TextBlock>
+                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
                   </Border>
-                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
-                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <CheckBox Name="d">
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" CornerRadius="8">
+                    <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox  Name="KM2" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Text="Mango Shake"></TextBlock>
+                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 40%"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
                   </Border>
-                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" >
-                    <ListBoxItem Height="50" Background="LightSlateGray" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                      <CheckBox Name="f">
+                  <Border Margin="2" BorderBrush="Black" BorderThickness="2" Width="250" CornerRadius="8">
+                    <ListBoxItem Padding="10" Height="70" Background="#81dbde" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <CheckBox  Name="KM3" Background="Red">
                         <StackPanel Orientation="Horizontal">
-                          <TextBlock Text="Mango Shake"></TextBlock>
+                          <TextBlock Padding="10" Text="Khuyến mãi Món ăn 60%"></TextBlock>
                         </StackPanel>
                       </CheckBox>
                     </ListBoxItem>
                   </Border>
+                </ListBox>
+              </Grid>
+            </Grid>
+          </Border>
+          <Border Grid.Row="1" BorderBrush="Black" BorderThickness="2" Margin="5 10 5 5">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1*"/>
+              </Grid.RowDefinitions>
+              <Border Background="Red" Grid.Row="0" Height="50" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0 0 0 2">
+                <DockPanel Background="#144fe3">
+                  <materialDesign:PackIcon Kind="Gift" Height="20" Width="20" Foreground="White" Margin="5 0 0 2" VerticalAlignment="Center"/>
+                  <Label VerticalAlignment="Center"  FontWeight="Bold" FontSize="18" Foreground="White">Thông báo</Label>
+                </DockPanel>
+              </Border>
+              <Grid Grid.Row="1" Background="#eeeeee">
+                <ListBox HorizontalAlignment="Center" Margin="0" Padding="0" VerticalAlignment="Top" ItemsSource="{Binding ListInfoNotify}" >
+                  <ListBox.ItemTemplate>
+                    <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
+                      <ListBoxItem Height="50" Padding="0" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                        <Grid>
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="1*"/>
+                          </Grid.RowDefinitions>
+                          <TextBlock Grid.Row="0" Text="Thanh toan Momo" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
+                          <DockPanel Grid.Row="1" Width="260">
+                              <TextBlock TextTrimming="CharacterEllipsis" FontSize="10" DockPanel.Dock="Left" VerticalAlignment="Center" Text="{Binding Description}" HorizontalAlignment="Left"></TextBlock>
+                            <Button CommandParameter="{Binding Id}" Click="Button_Click_Payment" DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="25" BorderBrush="Red" Padding="0" Width="80" Background="#d63131"/>
+                          </DockPanel>
+                        </Grid>
+                      </ListBoxItem>
+                    </Border>
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                 
+                  <!--<Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
+                    <ListBoxItem Height="50" Padding="2" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <Grid>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="20"/>
+                          <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="Thanh toan Momo" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
+                        <DockPanel Grid.Row="1" Width="240">
+                          <TextBlock FontSize="10" DockPanel.Dock="Left" VerticalAlignment="Center" Text="Bàn 1 tầng 1" HorizontalAlignment="Left"></TextBlock>
+                          <Button DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="30" Width="100" Background="#d63131" HorizontalAlignment="Right" />
+                        </DockPanel>
+                      </Grid>
+                    </ListBoxItem>
+                  </Border>
+                  <Border BorderBrush="Black" BorderThickness="0 0 0 1" Width="250">
+                    <ListBoxItem Height="50" Padding="2" Background="Transparent" Foreground="Orange" FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                      <Grid>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="20"/>
+                          <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="Thanh toan tiền mặt" VerticalAlignment="Center" FontSize="10" Foreground="Green"/>
+                        <DockPanel Grid.Row="1" Width="240">
+                          <TextBlock FontSize="10" DockPanel.Dock="Left" VerticalAlignment="Center" Text="Bàn 1 tầng 1" HorizontalAlignment="Left"></TextBlock>
+                          <Button DockPanel.Dock="Right" Content="Thanh toán" FontSize="10" Height="30" Width="100" Background="#d63131" HorizontalAlignment="Right" />
+                        </DockPanel>
+                      </Grid>
+                    </ListBoxItem>
+                  </Border>-->
                 </ListBox>
               </Grid>
             </Grid>
